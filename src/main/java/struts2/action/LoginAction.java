@@ -2,7 +2,11 @@ package struts2.action;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport {
-    private String username;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String username;
     private String password;
  
     public String execute() {
