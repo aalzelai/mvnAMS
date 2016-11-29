@@ -33,5 +33,5 @@
   </dependencies>
   <build>
     <finalName>mvnAMS</finalName>
-  </build>
+  </build> 
 </project>
