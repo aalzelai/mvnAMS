@@ -7,5 +7,4 @@ deploy:
   api_key: scKFuytwDLrfjxqHQRqs
 install: 
     - mvn clean
-    - mvn package
-    - mvn test
+    -mvn install
