@@ -5,6 +5,7 @@ jdk:
 deploy:
   provider: heroku
   api_key: scKFuytwDLrfjxqHQRqs
+  
 install: 
     - mvn clean
-    -mvn install
+    - mvn install
