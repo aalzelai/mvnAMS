@@ -1,6 +1,9 @@
 package struts2.action;
 import com.opensymphony.xwork2.ActionSupport;
 
+import domain.dao.UserFacade;
+import domain.model.User;
+
 public class LoginAction extends ActionSupport {
     /**
 	 * 
@@ -11,6 +14,23 @@ public class LoginAction extends ActionSupport {
  
     public String execute() {
  
+    	User user = null;
+		System.out.println("Username: "+username);
+		System.out.println("Password: "+password);
+		
+		UserFacade uf = new UserFacade();
+		if(username!=null && password!=null){
+			user = uf.loadUser(username, password);
+		}
+			
+		if(user != null){
+			return "success1";
+		}else{
+			return "error";
+		}
+    	
+    	
+    	/*
     	System.out.println("user: "+this.username);
         if (this.username.equals("admin1")
                 && this.password.equals("admin")) {
@@ -29,6 +49,7 @@ public class LoginAction extends ActionSupport {
             addActionError(getText("error.login"));
             return "error";
         }
+        */
     }
  
     public String getUsername() {
