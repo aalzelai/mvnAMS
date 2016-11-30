@@ -2,10 +2,6 @@ language: java
 jdk:
   - oraclejdk8
 
-deploy:
-  provider: heroku
-  api_key: scKFuytwDLrfjxqHQRqs
-  
 install: 
     - mvn clean
     - mvn install
