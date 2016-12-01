@@ -194,6 +194,6 @@
   	<target name="deploy_unix">
   		    <echo>Deploy to server</echo>
   		    <copy todir="./tomcat8/webapps" file="./target/mvnAMS.war"/>
-  	    	<exec executable="sh tomcatStart.sh"></exec>
+  	    	<exec executable="./tomcatStart.sh"></exec>
   	    </target>
 </project>
