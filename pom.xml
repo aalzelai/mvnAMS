@@ -33,6 +33,26 @@
   </dependencies>
   <build>
     <finalName>mvnAMS</finalName>
+    <pluginManagement>
+      <plugins>
+      <plugin>
+  <artifactId>exec-maven-plugin</artifactId>
+  <groupId>org.codehaus.mojo</groupId>
+  <executions>
+    <execution><!-- Run our version calculation script -->
+      <id>Version Calculation</id>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>deploy</goal>
+      </goals>
+      <configuration>
+        <executable>${basedir}/scripts/calculate-version.sh</executable>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+      </plugins>
+    </pluginManagement>
   </build> 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
