@@ -1,1 +1,6 @@
 /target
+/tomcat8/work
+/tomcat8/webapps
+/tomcat8/webapps/mvnAMS.war
+/tomcat8/webapps/mvnAMS
+/tomcat8/work/Catalina/localhost/mvnAMS
