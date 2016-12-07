@@ -10,8 +10,8 @@ public class User_Passenger extends User {
 		super();
 	}
 
-	public User_Passenger(int id_user, String username, String password, String user_type, String telephone,
-			String email) {
+	public User_Passenger(int id_user, String username, String password,
+						String user_type, String telephone,	String email){
 		super(id_user, username, password, user_type);
 		this.telephone = telephone;
 		this.email = email;
