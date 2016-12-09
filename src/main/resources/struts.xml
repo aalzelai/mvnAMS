@@ -20,4 +20,10 @@
             <result name="error">index.jsp</result>
         </action>
     </package>
+    
+    <package name="serveAll" namespace="" extends="struts-default">
+        <action name="*">
+            <result>/main/webapp/pages/404.jsp</result>
+        </action>
+</package>
 </struts>
