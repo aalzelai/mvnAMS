@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="mvnAMS">
+              as the first entry and export the buildfile again. --><project basedir="." default="clean-compile-deploy" name="mvnAMS">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../../../../../../Program Files (x86)/eclipse_web/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -126,73 +126,13 @@
         <pathelement location="src/main/webapp/WEB-INF/lib/jwebunit-core-3.1.jar"/>
         <pathelement location="src/main/webapp/WEB-INF/lib/jwebunit-htmlunit-plugin-3.1.jar"/>
     </path>
-    <target name="init">
-        <mkdir dir="target/classes"/>
-        <copy includeemptydirs="false" todir="target/classes">
-            <fileset dir="src/main/java">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-        <copy includeemptydirs="false" todir="target/classes">
-            <fileset dir="src/main/resources">
-                <exclude name="**/*.java"/>
-                <exclude name="**"/>
-            </fileset>
-        </copy>
-        <copy includeemptydirs="false" todir="target/classes">
-            <fileset dir="src/test/java">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="clean">
-        <delete dir="target/classes"/>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src/main/java"/>
-            <src path="src/main/resources"/>
-            <src path="src/test/java"/>
-            <exclude name="**"/>
-            <classpath refid="mvnAMS.classpath"/>
-        </javac>
-    </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
-
   	<target name="clean-compile-deploy">
-  		<exec executable="./addMaven.bat"></exec>
+  		<exec executable="./scripts/addMaven.bat"></exec>
   		<antcall target="deploy"/>
-  	</target>
-
-  	<target name="clean-compile-deploy_unix">
-  	    <exec dir="." executable="sh">
-  	        <arg line="-c 'mvn clean install'" />
-  	    </exec>
   	</target>
     <target name="deploy">
 	    <echo>Deploy to server</echo>
 	    <copy todir="./tomcat8/webapps" file="./target/mvnAMS.war"/>
-    	<exec executable="./tomcatStart.bat"></exec>
+    	<exec executable="./scripts/tomcatStart.bat"></exec>
     </target>
-  	<target name="deploy_unix">
-  		    <echo>Deploy to server</echo>
-  		    <copy todir="./tomcat8/webapps" file="./target/mvnAMS.war"/>
-  	    </target>
 </project>
