@@ -1,43 +1,117 @@
 package domain.model;
 
+/**
+ * The general class of the users.
+ * @author PBL5
+ *
+ */
 public class User {
-	int id_user;
-	String username;
-	String password;
-	String user_type;
-	
-	public User(){ }
 
-	public User(int id_user, String username, String password, String user_type) {
-		super();
-		this.id_user = id_user;
-		this.username = username;
-		this.password = password;
-		this.user_type = user_type;
-	}
+    /**
+     * The id of the user.
+     */
+    private int idUser;
 
-	public int getId_user() {
-		return id_user;
-	}
+    /**
+     * The username of the user.
+     */
+    private String username;
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
-	}
+    /**
+     * The password of the user.
+     */
+    private String password;
 
-	public String getUsername() {
-		return username;
-	}
+    /**
+     * The type of the user.
+     */
+    private String userType;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    /**
+     * A constructor of the user.
+     */
+    public User() {
 
-	public String getPassword() {
-		return password;
-	}
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * The general constructor of the users.
+     * @param idUser is the id of the user
+     * @param username is the name of the user
+     * @param password is the password of the user
+     * @param userType is the type of the user
+     */
+    public User(final int idUser, final String username,
+                final String password, final String userType) {
+        super();
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.userType = userType;
+    }
+
+    /**
+     * Getter of the username.
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Setter of the username.
+     * @param username is the username.
+     */
+    public void setUsername(final String username) {
+        this.username = username;
+    }
+
+    /**
+     * Getter of the password.
+     * @return the password.
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Setter of the password.
+     * @param password is the password.
+     */
+    public void setPassword(final String password) {
+        this.password = password;
+    }
+
+    /**
+     * Getter of the id.
+     * @return the id of the user.
+     */
+    public int getIdUser() {
+        return idUser;
+    }
+
+    /**
+     * Setter of the id.
+     * @param idUser is the id of the user
+     */
+    public void setIdUser(final int idUser) {
+        this.idUser = idUser;
+    }
+
+    /**
+     * Getter of the userType.
+     * @return the type of the user.
+     */
+    public String getUserType() {
+        return userType;
+    }
+
+    /**
+     * Setter of the userType.
+     * @param userType is the type of the user
+     */
+    public void setUserType(final String userType) {
+        this.userType = userType;
+    }
 
 }

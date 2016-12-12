@@ -2,114 +2,250 @@ package domain.model;
 
 import java.sql.Timestamp;
 
+/**
+ * The class of the flight.
+ * @author PBL5
+ *
+ */
 public class Flight {
-	Timestamp time_In;
-	Timestamp time_Out;
-	String airport_In;
-	String airport_Out;
-	int delay;
-	String estate;
-	int number_Port;
-	int number_Luggage;
-	int id;
-	Airplane airplane;
-	
-	public Flight(int id, Airplane airplane, String estate,
-				Timestamp time_In, Timestamp time_Out,
-				String airport_In, String airport_Out,
-				int delay, int number_Port, int number_Luggage){
-		
-		this.id = id;
-		this.airplane = airplane;
-		this.estate = estate;
-		this.time_In = time_In;
-		this.time_Out = time_Out;
-		this.airport_In = airport_In;
-		this.airport_Out = airport_Out;
-		this.delay = delay;
-		this.number_Port = number_Port;
-		this.number_Luggage = number_Luggage;
-	}
 
-	public Timestamp getTime_In() {
-		return time_In;
-	}
+    /**
+     * Time to start the flight.
+     */
+    private Timestamp timeIn;
 
-	public void setTime_In(Timestamp time_In) {
-		this.time_In = time_In;
-	}
+    /**
+     * Time to finish the flight.
+     */
+    private Timestamp timeOut;
 
-	public Timestamp getTime_Out() {
-		return time_Out;
-	}
+    /**
+     * The airport of the beggining of the flight.
+     */
+    private String airportIn;
 
-	public void setTime_Out(Timestamp time_Out) {
-		this.time_Out = time_Out;
-	}
+    /**
+     * The airport of the final of the flight.
+     */
+    private String airportOut;
 
-	public String getAirport_In() {
-		return airport_In;
-	}
+    /**
+     * The delay of the flight.
+     */
+    private int delay;
 
-	public void setAirport_In(String airport_In) {
-		this.airport_In = airport_In;
-	}
+    /**
+     * The estate of the flight.
+     */
+    private String estate;
 
-	public String getAirport_Out() {
-		return airport_Out;
-	}
+    /**
+     * The number of the port that is going to be the airplane of the flight.
+     */
+    private int numberPort;
 
-	public void setAirport_Out(String airport_Out) {
-		this.airport_Out = airport_Out;
-	}
+    /**
+     * The number of the luggage that is going to be the airplane of the flight.
+     */
+    private int numberLuggage;
 
-	public int getDelay() {
-		return delay;
-	}
+    /**
+     * The id of the flight.
+     */
+    private int id;
 
-	public void setDelay(int delay) {
-		this.delay = delay;
-	}
+    /**
+     * The airplane of the flight.
+     */
+    private Airplane airplane;
 
-	public String getEstate() {
-		return estate;
-	}
+    /**
+     * The constructor of the flight.
+     * @param id is the id
+     * @param airplane the airplane of the flight.
+     * @param estate the estate
+     * @param timeIn the time to start
+     * @param timeOut the time to finish.
+     * @param airportIn the airport of the beggining
+     * @param airportOut the airport of the final
+     * @param delay the delay of the flight
+     * @param numberPort the port of the airplane of the flight
+     * @param numberLuggage the luggage in witch is the airplane
+     */
+    public Flight(final int id, final Airplane airplane, final String estate,
+                final Timestamp timeIn, final Timestamp timeOut,
+                final String airportIn, final String airportOut,
+                final int delay, final int numberPort,
+                final int numberLuggage) {
+        this.id = id;
+        this.airplane = airplane;
+        this.estate = estate;
+        this.timeIn = timeIn;
+        this.timeOut = timeOut;
+        this.airportIn = airportIn;
+        this.airportOut = airportOut;
+        this.delay = delay;
+        this.numberPort = numberPort;
+        this.numberLuggage = numberLuggage;
+    }
 
-	public void setEstate(String estate) {
-		this.estate = estate;
-	}
+    /**
+     * Getter of the time to enter to the airport.
+     * @return the enter time
+     */
+    public Timestamp getTimeIn() {
+        return timeIn;
+    }
 
-	public int getNumber_Port() {
-		return number_Port;
-	}
+    /**
+     * Setter of the time to enter to the airport.
+     * @param timeIn the time to enter to the airport
+     */
+    public void setTimeIn(final Timestamp timeIn) {
+        this.timeIn = timeIn;
+    }
 
-	public void setNumber_Port(int number_Port) {
-		this.number_Port = number_Port;
-	}
+    /**
+     * Getter of the time to exit from the airport.
+     * @return the exit time.
+     */
+    public Timestamp getTimeOut() {
+         return timeOut;
+    }
 
-	public int getNumber_Luggage() {
-		return number_Luggage;
-	}
+    /**
+     * Setter of the time to exit the airport.
+     * @param timeOut the time to exit the airport.
+     */
+    public void setTimeOut(final Timestamp timeOut) {
+        this.timeOut = timeOut;
+    }
 
-	public void setNumber_Luggage(int number_Luggage) {
-		this.number_Luggage = number_Luggage;
-	}
+    /**
+     * Getter of the enter airport.
+     * @return the name of the airport.
+     */
+    public String getAirportIn() {
+        return airportIn;
+    }
 
-	public int getId() {
-		return id;
-	}
+    /**
+     * Setter fo the enter airport.
+     * @param airportIn is the airport to arrive.
+     */
+    public void setAirportIn(final String airportIn) {
+        this.airportIn = airportIn;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * Getter of the exit airport.
+     * @return the name of the exit airport.
+     */
+    public String getAirportOut() {
+        return airportOut;
+    }
 
-	public Airplane getAirplane() {
-		return airplane;
-	}
+    /**
+     * Setter of the exit airport.
+     * @param airportOut is the airport of the beggining.
+     */
+    public void setAirportOut(final String airportOut) {
+        this.airportOut = airportOut;
+    }
 
-	public void setAirplane(Airplane airplane) {
-		this.airplane = airplane;
-	}
-	
-	
+    /**
+     * Getter of the delay of the flight.
+     * @return the delay in a number
+     */
+    public int getDelay() {
+        return delay;
+    }
+
+    /**
+     * Setter of the delay of the flight.
+     * @param delay is the time that is delayed the flight.
+     */
+    public void setDelay(final int delay) {
+        this.delay = delay;
+    }
+
+    /**
+     * Getter of the estate of the flight.
+     * @return the estate of the flight.
+     */
+    public String getEstate() {
+        return estate;
+    }
+
+    /**
+     * Setter of the estate of the flight.
+     * @param estate is the actual estate of the flight.
+     */
+    public void setEstate(final String estate) {
+        this.estate = estate;
+    }
+
+    /**
+     * Getter of the number of the port.
+     * @return the number of the port.
+     */
+    public int getNumberPort() {
+        return numberPort;
+    }
+
+    /**
+     * Setter of the number of the port.
+     * @param numberPort is the number of the port
+     */
+    public void setNumberPort(final int numberPort) {
+        this.numberPort = numberPort;
+    }
+
+    /**
+     * Getter of the number of the luggage.
+     * @return the number of the luggage
+     */
+    public int getNumberLuggage() {
+        return numberLuggage;
+    }
+
+    /**
+     * Setter of the number of the luggage.
+     * @param numberLuggage is the number of the luggage.
+     */
+    public void setNumberLuggage(final int numberLuggage) {
+         this.numberLuggage = numberLuggage;
+    }
+
+    /**
+     * Getter of the id of the flight.
+     * @return the id of the flight.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Setter of the id of the flight.
+     * @param id is the identificator of the flight.
+     */
+    public void setId(final int id) {
+        this.id = id;
+    }
+
+    /**
+     * Getter of the airplane of the flight.
+     * @return the airplane
+     */
+    public Airplane getAirplane() {
+        return airplane;
+    }
+
+    /**
+     * Setter of the airplane of the flight.
+     * @param airplane is the airplane of the flight.
+     */
+    public void setAirplane(final Airplane airplane) {
+        this.airplane = airplane;
+    }
 }
