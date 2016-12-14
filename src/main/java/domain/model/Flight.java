@@ -8,7 +8,8 @@ import java.util.List;
 
 /**
  * The persistent class for the flight database table.
- * 
+ * The class of the flight.
+ * @author PBL5
  */
 @Entity
 @NamedQuery(name="Flight.findAll", query="SELECT f FROM Flight f")

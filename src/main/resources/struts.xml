@@ -2,14 +2,14 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
- 
+
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation"
         value="false" />
     <constant name="struts.devMode" value="false" />
     <constant name="struts.custom.i18n.resources"
         value="ApplicationResources" />
- 
+
     <package name="default" extends="struts-default" namespace="/">
         <action name="login"
             class="struts2.action.LoginAction">
@@ -20,7 +20,7 @@
             <result name="error">index.jsp</result>
         </action>
     </package>
-    
+
     <package name="serveAll" namespace="" extends="struts-default">
         <action name="*">
             <result>/main/webapp/pages/404.jsp</result>

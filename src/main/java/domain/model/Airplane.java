@@ -1,81 +1,179 @@
 package domain.model;
 
+/**
+ * Is the class of the airplanes.
+ * @author PBL5
+ *
+ */
 public class Airplane {
-	
-	int id_Tipo_Avion;
-	int id;
-	int id_Airline;
-	int id_Estatus;
-	int terminal;
-	float posX;
-	float posY;
-	
-	public Airplane(int id, int id_Tipo_Avion, int id_Airline,
-					int id_Estatus, float posX, float posY,
-					int terminal){
-		this.id = id;
-		this.id_Tipo_Avion = id_Tipo_Avion;
-		this.id_Airline = id_Airline;
-		this.id_Estatus = id_Estatus;
-		this.posX = posX;
-		this.posY = posY;
-		this.terminal = terminal;
-	}
 
-	public int getId_Tipo_Avion() {
-		return id_Tipo_Avion;
-	}
+    /**
+     * The type of the plane.
+     */
+    private int idTipoAvion;
 
-	public void setId_Tipo_Avion(int id_Tipo_Avion) {
-		this.id_Tipo_Avion = id_Tipo_Avion;
-	}
+    /**
+     * The identificator of the plane.
+     */
+    private int id;
 
-	public int getId() {
-		return id;
-	}
+    /**
+     * The identificator of the airline of the plane.
+     */
+    private int idAirline;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    /**
+     * The estatus of the plane.
+     */
+    private int idEstatus;
 
-	public int getId_Airline() {
-		return id_Airline;
-	}
+    /**
+     * The actual terminal of the plane.
+     */
+    private int terminal;
 
-	public void setId_Airline(int id_Airline) {
-		this.id_Airline = id_Airline;
-	}
+    /**
+     * The actual x position of the plane in the map.
+     */
+    private float posX;
 
-	public int getId_Estatus() {
-		return id_Estatus;
-	}
+    /**
+     * The actual y position of the plane in the map.
+     */
+    private float posY;
 
-	public void setId_Estatus(int id_Estatus) {
-		this.id_Estatus = id_Estatus;
-	}
+    /**
+     * The complete constructor of the plane.
+     * @param id the identificator
+     * @param idTipoAvion the type of the plane
+     * @param idAirline the id of the airline
+     * @param idEstatus the estatus of the plane
+     * @param posX the x position
+     * @param posY the y position
+     * @param terminal the actual terminal
+     */
+    public Airplane(final int id, final int idTipoAvion, final int idAirline,
+            final int idEstatus, final float posX, final float posY,
+            final int terminal) {
+        this.id = id;
+        this.idTipoAvion = idTipoAvion;
+        this.idAirline = idAirline;
+        this.idEstatus = idEstatus;
+        this.posX = posX;
+        this.posY = posY;
+        this.terminal = terminal;
+    }
 
-	public float getPosX() {
-		return posX;
-	}
+    /**
+     * Getter of id.
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
 
-	public void setPosX(float posX) {
-		this.posX = posX;
-	}
+    /**
+     * Setter of id.
+     * @param id is the id
+     */
+    public void setId(final int id) {
+        this.id = id;
+    }
 
-	public float getPosY() {
-		return posY;
-	}
+    /**
+     * Getter of the position x.
+     * @return position x
+     */
+    public float getPosX() {
+        return posX;
+    }
 
-	public void setPosY(float posY) {
-		this.posY = posY;
-	}
+    /**
+     * Setter of the position x.
+     * @param posX is the x position.
+     */
+    public void setPosX(final float posX) {
+        this.posX = posX;
+    }
 
-	public int getTerminal() {
-		return terminal;
-	}
+    /**
+     * Getter of the position y.
+     * @return the position y
+     */
+    public float getPosY() {
+        return posY;
+    }
 
-	public void setTerminal(int terminal) {
-		this.terminal = terminal;
-	}
+    /**
+     * Setter of the position y.
+     * @param posY is the y position
+     */
+    public void setPosY(final float posY) {
+        this.posY = posY;
+    }
+
+    /**
+     * Getter of the terminal.
+     * @return the actual terminal
+     */
+    public int getTerminal() {
+        return terminal;
+    }
+
+    /**
+     * Setter of the terminal.
+     * @param terminal is the actual terminal
+     */
+    public void setTerminal(final int terminal) {
+        this.terminal = terminal;
+    }
+
+    /**
+     * Getter of idTipoAvion.
+     * @return idTipoAvion
+     */
+    public int getIdTipoAvion() {
+        return idTipoAvion;
+    }
+
+    /**
+     * Setter of idTipoAvion.
+     * @param idTipoAvion the idTipoAvion
+     */
+    public void setIdTipoAvion(final int idTipoAvion) {
+        this.idTipoAvion = idTipoAvion;
+    }
+
+    /**
+     * Getter of idAirline.
+     * @return idAirline
+     */
+    public int getIdAirline() {
+        return idAirline;
+    }
+
+    /**
+     * Setter of idAiline.
+     * @param idAirline is the idAirline
+     */
+    public void setIdAirline(final int idAirline) {
+        this.idAirline = idAirline;
+    }
+
+    /**
+     * Getter of idEstatus.
+     * @return idEstatus
+     */
+    public int getIdEstatus() {
+        return idEstatus;
+    }
+
+    /**
+     * Setter of idEstatus.
+     * @param idEstatus the id of the estatus
+     */
+    public void setIdEstatus(final int idEstatus) {
+        this.idEstatus = idEstatus;
+    }
 
 }
