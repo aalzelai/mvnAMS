@@ -1,7 +1,9 @@
 package struts2.action;
+import java.util.List;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-import domain.dao.UserFacade;
+import domain.dao.DaoUserHibernate;
 import domain.model.User;
 
 public class LoginAction extends ActionSupport {
@@ -9,25 +11,41 @@ public class LoginAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String username;
-    private String password;
+	private User user;
+	private List<User> userList;
+	private DaoUserHibernate userDao;
+    
+    public LoginAction() {
+    	userDao = new DaoUserHibernate();
+	}
+
  
     public String execute() {
  
-    	User user = null;
-		System.out.println("Username: "+username);
-		System.out.println("Password: "+password);
+		/*System.out.println("Username: "+user.getUsername());
+		System.out.println("Password: "+user.getPassword());
 		
-		UserFacade uf = new UserFacade();
-		if(username!=null && password!=null){
-			user = uf.loadUser(username, password);
-		}
+		if(user.getUsername()!=null && user.getPassword()!=null){
 			
-		if(user != null){
+		}*/
+    	
+    	userDao = new DaoUserHibernate();
+    	
+    	System.out.println("LLEGA 1");
+    	
+		userList = userDao.loadUser();
+		
+    	System.out.println("LLEGA 2");
+    	
+    	System.out.println("Hay " + userList.size() + " usuarios");
+
+		return "success2";
+		
+		/*if(user != null){
 			return "success1";
 		}else{
 			return "error";
-		}
+		}*/
     	
     	
     	/*
@@ -52,20 +70,26 @@ public class LoginAction extends ActionSupport {
         */
     }
  
-    public String getUsername() {
-        return username;
-    }
- 
-    public void setUsername(String username) {
-        this.username = username;
-    }
- 
-    public String getPassword() {
-        return password;
-    }
- 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+	
+	
+    
+    
 }
 

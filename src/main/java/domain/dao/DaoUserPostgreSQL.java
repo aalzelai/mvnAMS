@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import domain.model.User;
-import domain.model.User_Passenger;
+import domain.model.UserPassenger;
 
 public class DaoUserPostgreSQL implements DaoUser {
 
@@ -105,7 +105,7 @@ public class DaoUserPostgreSQL implements DaoUser {
 				try {
 					switch(user_type){
 					case "Passenger":
-						user = loadUserPassenger(rs);
+						//user = loadUserPassenger(rs);
 						break;
 						
 					case "Airline":
@@ -118,7 +118,7 @@ public class DaoUserPostgreSQL implements DaoUser {
 						break;
 					}
 					
-				}catch(SQLException e1){
+				}catch(Exception e1){
 					e1.printStackTrace();
 					System.out.println("Error query dinamica");
 				}
@@ -132,14 +132,14 @@ public class DaoUserPostgreSQL implements DaoUser {
 		return user;
 	}
 	
-	public User loadUserPassenger(ResultSet rs) throws SQLException{
+	public UserPassenger loadUserPassenger(ResultSet rs) throws SQLException{
 		Statement stm = connection.createStatement();
 		ResultSet user_rs = null;
 		String sqlQuery = "SELECT * FROM user_passenger WHERE id_user = " + rs.getInt("id_user") + ";";
 		
 		user_rs = stm.executeQuery(sqlQuery);
 		if(user_rs.next()){
-			return new User_Passenger(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), rs.getString("description"), user_rs.getString("telephone"), user_rs.getString("email"));
+			//return new UserPassenger(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), rs.getString("description"), user_rs.getString("telephone"), user_rs.getString("email"));
 		}
 		return null;
 	}

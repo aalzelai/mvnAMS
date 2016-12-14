@@ -6,6 +6,6 @@
 </head>
  
 <body>
-    <h2>Hi!, <s:property value="username" />...! You`re user type 1 </h2>
+    <h2>Hi!, <s:property value="user.username" />...! You`re user type 1 </h2>
 </body>
 </html> 

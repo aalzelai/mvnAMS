@@ -1,43 +1,65 @@
 package domain.model;
 
-public class User {
-	int id_user;
-	String username;
-	String password;
-	String user_type;
-	
-	public User(){ }
+import java.io.Serializable;
+import javax.persistence.*;
 
-	public User(int id_user, String username, String password, String user_type) {
-		super();
-		this.id_user = id_user;
-		this.username = username;
+
+/**
+ * The persistent class for the users database table.
+ * 
+ */
+@Entity
+@Table(name="users")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="id_user")
+	private Integer idUser;
+
+	private String password;
+
+	private String username;
+
+	//bi-directional many-to-one association to UserType
+	@ManyToOne
+	@JoinColumn(name="id_user_type")
+	private UserType userType;
+
+	public User() {
+	}
+
+	public Integer getIdUser() {
+		return this.idUser;
+	}
+
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
 		this.password = password;
-		this.user_type = user_type;
-	}
-
-	public int getId_user() {
-		return id_user;
-	}
-
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public UserType getUserType() {
+		return this.userType;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 }

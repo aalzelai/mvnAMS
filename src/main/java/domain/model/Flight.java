@@ -1,115 +1,165 @@
 package domain.model;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
-public class Flight {
-	Timestamp time_In;
-	Timestamp time_Out;
-	String airport_In;
-	String airport_Out;
-	int delay;
-	String estate;
-	int number_Port;
-	int number_Luggage;
-	int id;
-	Airplane airplane;
-	
-	public Flight(int id, Airplane airplane, String estate,
-				Timestamp time_In, Timestamp time_Out,
-				String airport_In, String airport_Out,
-				int delay, int number_Port, int number_Luggage){
-		
-		this.id = id;
-		this.airplane = airplane;
-		this.estate = estate;
-		this.time_In = time_In;
-		this.time_Out = time_Out;
-		this.airport_In = airport_In;
-		this.airport_Out = airport_Out;
+
+/**
+ * The persistent class for the flight database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Flight.findAll", query="SELECT f FROM Flight f")
+public class Flight implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="id_flight")
+	private Integer idFlight;
+
+	@Column(name="baggage_number")
+	private Integer baggageNumber;
+
+	@Column(name="date_time_from")
+	private Timestamp dateTimeFrom;
+
+	@Column(name="date_time_to")
+	private Timestamp dateTimeTo;
+
+	private Integer delay;
+
+	@Column(name="gate_number")
+	private Integer gateNumber;
+
+	//bi-directional many-to-one association to Airport
+	@ManyToOne
+	@JoinColumn(name="id_airport_from")
+	private Airport airport1;
+
+	//bi-directional many-to-one association to Airport
+	@ManyToOne
+	@JoinColumn(name="id_airport_to")
+	private Airport airport2;
+
+	//bi-directional many-to-one association to FlightStatus
+	@ManyToOne
+	@JoinColumn(name="id_status")
+	private FlightStatus flightStatus;
+
+	//bi-directional many-to-one association to Plane
+	@ManyToOne
+	@JoinColumn(name="id_plane")
+	private Plane plane;
+
+	//bi-directional many-to-one association to Ticket
+	@OneToMany(mappedBy="flight")
+	private List<Ticket> tickets;
+
+	public Flight() {
+	}
+
+	public Integer getIdFlight() {
+		return this.idFlight;
+	}
+
+	public void setIdFlight(Integer idFlight) {
+		this.idFlight = idFlight;
+	}
+
+	public Integer getBaggageNumber() {
+		return this.baggageNumber;
+	}
+
+	public void setBaggageNumber(Integer baggageNumber) {
+		this.baggageNumber = baggageNumber;
+	}
+
+	public Timestamp getDateTimeFrom() {
+		return this.dateTimeFrom;
+	}
+
+	public void setDateTimeFrom(Timestamp dateTimeFrom) {
+		this.dateTimeFrom = dateTimeFrom;
+	}
+
+	public Timestamp getDateTimeTo() {
+		return this.dateTimeTo;
+	}
+
+	public void setDateTimeTo(Timestamp dateTimeTo) {
+		this.dateTimeTo = dateTimeTo;
+	}
+
+	public Integer getDelay() {
+		return this.delay;
+	}
+
+	public void setDelay(Integer delay) {
 		this.delay = delay;
-		this.number_Port = number_Port;
-		this.number_Luggage = number_Luggage;
 	}
 
-	public Timestamp getTime_In() {
-		return time_In;
+	public Integer getGateNumber() {
+		return this.gateNumber;
 	}
 
-	public void setTime_In(Timestamp time_In) {
-		this.time_In = time_In;
+	public void setGateNumber(Integer gateNumber) {
+		this.gateNumber = gateNumber;
 	}
 
-	public Timestamp getTime_Out() {
-		return time_Out;
+	public Airport getAirport1() {
+		return this.airport1;
 	}
 
-	public void setTime_Out(Timestamp time_Out) {
-		this.time_Out = time_Out;
+	public void setAirport1(Airport airport1) {
+		this.airport1 = airport1;
 	}
 
-	public String getAirport_In() {
-		return airport_In;
+	public Airport getAirport2() {
+		return this.airport2;
 	}
 
-	public void setAirport_In(String airport_In) {
-		this.airport_In = airport_In;
+	public void setAirport2(Airport airport2) {
+		this.airport2 = airport2;
 	}
 
-	public String getAirport_Out() {
-		return airport_Out;
+	public FlightStatus getFlightStatus() {
+		return this.flightStatus;
 	}
 
-	public void setAirport_Out(String airport_Out) {
-		this.airport_Out = airport_Out;
+	public void setFlightStatus(FlightStatus flightStatus) {
+		this.flightStatus = flightStatus;
 	}
 
-	public int getDelay() {
-		return delay;
+	public Plane getPlane() {
+		return this.plane;
 	}
 
-	public void setDelay(int delay) {
-		this.delay = delay;
+	public void setPlane(Plane plane) {
+		this.plane = plane;
 	}
 
-	public String getEstate() {
-		return estate;
+	public List<Ticket> getTickets() {
+		return this.tickets;
 	}
 
-	public void setEstate(String estate) {
-		this.estate = estate;
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
 
-	public int getNumber_Port() {
-		return number_Port;
+	public Ticket addTicket(Ticket ticket) {
+		getTickets().add(ticket);
+		ticket.setFlight(this);
+
+		return ticket;
 	}
 
-	public void setNumber_Port(int number_Port) {
-		this.number_Port = number_Port;
+	public Ticket removeTicket(Ticket ticket) {
+		getTickets().remove(ticket);
+		ticket.setFlight(null);
+
+		return ticket;
 	}
 
-	public int getNumber_Luggage() {
-		return number_Luggage;
-	}
-
-	public void setNumber_Luggage(int number_Luggage) {
-		this.number_Luggage = number_Luggage;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Airplane getAirplane() {
-		return airplane;
-	}
-
-	public void setAirplane(Airplane airplane) {
-		this.airplane = airplane;
-	}
-	
-	
 }
