@@ -7,106 +7,194 @@ import java.util.List;
 
 /**
  * The persistent class for the user_passenger database table.
- * 
  */
 @Entity
-@Table(name="user_passenger")
-@NamedQuery(name="UserPassenger.findAll", query="SELECT u FROM UserPassenger u")
+@Table(name = "user_passenger")
+@NamedQuery(name = "UserPassenger.findAll",
+            query = "SELECT u FROM UserPassenger u")
 public class UserPassenger implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_user")
-	private Integer idUser;
+    /**
+     * The identifier.
+     */
+    @Id
+    @Column(name = "id_user")
+    private Integer idUser;
 
-	private String email;
+    /**
+     * The email.
+     */
+    private String email;
 
-	private String password;
+    /**
+     * The password.
+     */
+    private String password;
 
-	private String telephone;
+    /**
+     * The telephone.
+     */
+    private String telephone;
 
-	private String username;
+    /**
+     * The username.
+     */
+    private String username;
 
-	//bi-directional many-to-one association to UserType
-	@ManyToOne
-	@JoinColumn(name="id_user_type")
-	private UserType userType;
+    /**
+     * bi-directional many-to-one association to UserType.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_user_type")
+    private UserType userType;
 
-	//bi-directional many-to-one association to Ticket
-	@OneToMany(mappedBy="userPassenger")
-	private List<Ticket> tickets;
+    /**
+     * bi-directional many-to-one association to Ticket.
+     */
+    @OneToMany(mappedBy = "userPassenger")
+    private List<Ticket> tickets;
 
-	public UserPassenger() {
-	}
+    /**
+     * Constructor.
+     */
+    public UserPassenger() {
+    }
 
-	public Integer getIdUser() {
-		return this.idUser;
-	}
+    /**
+     * Getter of the identifier.
+     * @return the identifier.
+     */
+    public Integer getIdUser() {
+        return this.idUser;
+    }
 
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
-	}
+    /**
+     * Setter of the identifier.
+     * @param idUser is the identifier.
+     */
+    public void setIdUser(final Integer idUser) {
+        this.idUser = idUser;
+    }
 
-	public String getEmail() {
-		return this.email;
-	}
+    /**
+     * Getter of the email.
+     * @return the email.
+     */
+    public String getEmail() {
+        return this.email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * Setter of the email.
+     * @param email is the email.
+     */
+    public void setEmail(final String email) {
+        this.email = email;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    /**
+     * Getter of the password.
+     * @return the password.
+     */
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * Setter of the password.
+     * @param password is the password.
+     */
+    public void setPassword(final String password) {
+        this.password = password;
+    }
 
-	public String getTelephone() {
-		return this.telephone;
-	}
+    /**
+     * Getter of the telephone.
+     * @return the telephone.
+     */
+    public String getTelephone() {
+        return this.telephone;
+    }
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+    /**
+     * Setter of the telephone.
+     * @param telephone is the telephone.
+     */
+    public void setTelephone(final String telephone) {
+        this.telephone = telephone;
+    }
 
-	public String getUsername() {
-		return this.username;
-	}
+    /**
+     * Getter of the username.
+     * @return the username.
+     */
+    public String getUsername() {
+        return this.username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    /**
+     * Setter of the username.
+     * @param username is the username.
+     */
+    public void setUsername(final String username) {
+        this.username = username;
+    }
 
-	public UserType getUserType() {
-		return this.userType;
-	}
+    /**
+     * Getter of the user type.
+     * @return the user type.
+     */
+    public UserType getUserType() {
+        return this.userType;
+    }
 
-	public void setUserType(UserType userType) {
-		this.userType = userType;
-	}
+    /**
+     * Setter of the user type.
+     * @param userType is the user type.
+     */
+    public void setUserType(final UserType userType) {
+        this.userType = userType;
+    }
 
-	public List<Ticket> getTickets() {
-		return this.tickets;
-	}
+    /**
+     * Getter of the list of the tickets.
+     * @return the list of the tickets.
+     */
+    public List<Ticket> getTickets() {
+        return this.tickets;
+    }
 
-	public void setTickets(List<Ticket> tickets) {
-		this.tickets = tickets;
-	}
+    /**
+     * Setter of the list of the tickets.
+     * @param tickets is the list of the tickets.
+     */
+    public void setTickets(final List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
-	public Ticket addTicket(Ticket ticket) {
-		getTickets().add(ticket);
-		ticket.setUserPassenger(this);
+    /**
+     * Function to add a ticket to the list.
+     * @param ticket is the ticket to add.
+     * @return the added ticket.
+     */
+    public Ticket addTicket(final Ticket ticket) {
+        getTickets().add(ticket);
+        ticket.setUserPassenger(this);
 
-		return ticket;
-	}
+        return ticket;
+    }
 
-	public Ticket removeTicket(Ticket ticket) {
-		getTickets().remove(ticket);
-		ticket.setUserPassenger(null);
+    /**
+     * Function to remove a ticket from the list.
+     * @param ticket is the ticket to remove.
+     * @return the removed ticket.
+     */
+    public Ticket removeTicket(final Ticket ticket) {
+        getTickets().remove(ticket);
+        ticket.setUserPassenger(null);
 
-		return ticket;
-	}
+        return ticket;
+    }
 
 }

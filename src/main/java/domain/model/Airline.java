@@ -7,88 +7,153 @@ import java.util.List;
 
 /**
  * The persistent class for the airline database table.
- * 
+ *
  */
 @Entity
-@NamedQuery(name="Airline.findAll", query="SELECT a FROM Airline a")
+@NamedQuery(name = "Airline.findAll", query = "SELECT a FROM Airline a")
 public class Airline implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_airline")
-	private Integer idAirline;
+    /**
+     * Column id airline.
+     */
+    @Id
+    @Column(name = "id_airline")
+    private Integer idAirline;
 
-	private String name;
+    /**
+     * The name.
+     */
+    private String name;
 
-	//bi-directional many-to-one association to Plane
-	@OneToMany(mappedBy="airline")
-	private List<Plane> planes;
+    /**
+     * bi-directional many-to-one association to Plane.
+     */
+    @OneToMany(mappedBy = "airline")
+    private List<Plane> planes;
 
-	//bi-directional many-to-one association to UserAirline
-	@OneToMany(mappedBy="airline")
-	private List<UserAirline> userAirlines;
+    /**
+     * bi-directional many-to-one association to UserAirline.
+     */
+    @OneToMany(mappedBy = "airline")
+    private List<UserAirline> userAirlines;
 
-	public Airline() {
-	}
+    /**
+     * Constructor.
+     */
+    public Airline() {
+    }
 
-	public Integer getIdAirline() {
-		return this.idAirline;
-	}
+    /**
+     * Getter of the idAirline.
+     * @return the id.
+     */
+    public Integer getIdAirline() {
+        return this.idAirline;
+    }
 
-	public void setIdAirline(Integer idAirline) {
-		this.idAirline = idAirline;
-	}
+    /**
+     * Setter of id airline.
+     * @param idAirline is the id.
+     */
+    public void setIdAirline(final Integer idAirline) {
+        this.idAirline = idAirline;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    /**
+     * Getter of the name of the airline.
+     * @return the name
+     */
+    public String getName() {
+        return this.name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * Setter of the name of the airline.
+     * @param name is the name.
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
 
-	public List<Plane> getPlanes() {
-		return this.planes;
-	}
+    /**
+     * Getter of the list of the planes of the airline.
+     * @return the list.
+     */
+    public List<Plane> getPlanes() {
+        return this.planes;
+    }
 
-	public void setPlanes(List<Plane> planes) {
-		this.planes = planes;
-	}
+    /**
+     * Setter of the planes of the airline.
+     * @param planes is the list.
+     */
+    public void setPlanes(final List<Plane> planes) {
+        this.planes = planes;
+    }
 
-	public Plane addPlane(Plane plane) {
-		getPlanes().add(plane);
-		plane.setAirline(this);
+    /**
+     * Function to add a plane.
+     * @param plane the new plane
+     * @return the plane
+     */
+    public Plane addPlane(final Plane plane) {
+        getPlanes().add(plane);
+        plane.setAirline(this);
 
-		return plane;
-	}
+        return plane;
+    }
 
-	public Plane removePlane(Plane plane) {
-		getPlanes().remove(plane);
-		plane.setAirline(null);
+    /**
+     * Function to remove a plane.
+     * @param plane is the plane to remove
+     * @return the plane
+     */
+    public Plane removePlane(final Plane plane) {
+        getPlanes().remove(plane);
+        plane.setAirline(null);
 
-		return plane;
-	}
+        return plane;
+    }
 
-	public List<UserAirline> getUserAirlines() {
-		return this.userAirlines;
-	}
+    /**
+     * Getter of the users of the airline.
+     * @return the list of users.
+     */
+    public List<UserAirline> getUserAirlines() {
+        return this.userAirlines;
+    }
 
-	public void setUserAirlines(List<UserAirline> userAirlines) {
-		this.userAirlines = userAirlines;
-	}
+    /**
+     * Setter of the list of the users of an airline.
+     * @param userAirlines is the list.
+     */
+    public void setUserAirlines(final List<UserAirline> userAirlines) {
+        this.userAirlines = userAirlines;
+    }
 
-	public UserAirline addUserAirline(UserAirline userAirline) {
-		getUserAirlines().add(userAirline);
-		userAirline.setAirline(this);
+    /**
+     * Function to add a user to the list of the users.
+     * @param userAirline the new user.
+     * @return the user.
+     */
+    public UserAirline addUserAirline(final UserAirline userAirline) {
+        getUserAirlines().add(userAirline);
+        userAirline.setAirline(this);
 
-		return userAirline;
-	}
+        return userAirline;
+    }
 
-	public UserAirline removeUserAirline(UserAirline userAirline) {
-		getUserAirlines().remove(userAirline);
-		userAirline.setAirline(null);
+    /**
+     * Function to remove a user from the list.
+     * @param userAirline the user to remove.
+     * @return the user.
+     */
+    public UserAirline removeUserAirline(final UserAirline userAirline) {
+        getUserAirlines().remove(userAirline);
+        userAirline.setAirline(null);
 
-		return userAirline;
-	}
+        return userAirline;
+    }
 
 }

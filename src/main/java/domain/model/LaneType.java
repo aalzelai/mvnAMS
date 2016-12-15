@@ -7,63 +7,107 @@ import java.util.List;
 
 /**
  * The persistent class for the lane_type database table.
- * 
  */
 @Entity
-@Table(name="lane_type")
-@NamedQuery(name="LaneType.findAll", query="SELECT l FROM LaneType l")
+@Table(name = "lane_type")
+@NamedQuery(name = "LaneType.findAll", query = "SELECT l FROM LaneType l")
 public class LaneType implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_lane_type")
-	private Integer idLaneType;
+    /**
+     * The identifier of the type of the lane.
+     */
+    @Id
+    @Column(name = "id_lane_type")
+    private Integer idLaneType;
 
-	private String description;
+    /**
+     * The description.
+     */
+    private String description;
 
-	//bi-directional many-to-one association to Lane
-	@OneToMany(mappedBy="laneType")
-	private List<Lane> lanes;
+    /**
+     * //bi-directional many-to-one association to Lane.
+     */
+    @OneToMany(mappedBy = "laneType")
+    private List<Lane> lanes;
 
-	public LaneType() {
-	}
+    /**
+     * Constructor.
+     */
+    public LaneType() {
+    }
 
-	public Integer getIdLaneType() {
-		return this.idLaneType;
-	}
+    /**
+     * Getter of the identifier of the lane type.
+     * @return the identifier.
+     */
+    public Integer getIdLaneType() {
+        return this.idLaneType;
+    }
 
-	public void setIdLaneType(Integer idLaneType) {
-		this.idLaneType = idLaneType;
-	}
+    /**
+     * Setter of the identifier of the lane type.
+     * @param idLaneType is the identifier.
+     */
+    public void setIdLaneType(final Integer idLaneType) {
+        this.idLaneType = idLaneType;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    /**
+     * Getter of the description.
+     * @return the description.
+     */
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * Setter of the description.
+     * @param description is the description.
+     */
+    public void setDescription(final String description) {
+        this.description = description;
+    }
 
-	public List<Lane> getLanes() {
-		return this.lanes;
-	}
+    /**
+     * Getter of the list of the lanes.
+     * @return the list of the lanes.
+     */
+    public List<Lane> getLanes() {
+        return this.lanes;
+    }
 
-	public void setLanes(List<Lane> lanes) {
-		this.lanes = lanes;
-	}
+    /**
+     * Setter of the list of the lanes.
+     * @param lanes is the list of the lanes.
+     */
+    public void setLanes(final List<Lane> lanes) {
+        this.lanes = lanes;
+    }
 
-	public Lane addLane(Lane lane) {
-		getLanes().add(lane);
-		lane.setLaneType(this);
+    /**
+     * Function to add a lane to the list.
+     * @param lane the lane to add.
+     * @return the added lane.
+     */
+    public Lane addLane(final Lane lane) {
+        getLanes().add(lane);
+        lane.setLaneType(this);
 
-		return lane;
-	}
+        return lane;
+    }
 
-	public Lane removeLane(Lane lane) {
-		getLanes().remove(lane);
-		lane.setLaneType(null);
+    /**
+     * Function to remove a lane from the list.
+     * @param lane the lane to remove.
+     * @return the removed lane.
+     */
+    public Lane removeLane(final Lane lane) {
+        getLanes().remove(lane);
+        lane.setLaneType(null);
 
-		return lane;
-	}
+        return lane;
+    }
 
 }

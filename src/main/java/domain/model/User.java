@@ -6,60 +6,105 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the users database table.
- * 
  */
 @Entity
-@Table(name="users")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@Table(name = "users")
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
 public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_user")
-	private Integer idUser;
+    /**
+     *The identifier.
+     */
+    @Id
+    @Column(name = "id_user")
+    private Integer idUser;
 
-	private String password;
+    /**
+     * The password.
+     */
+    private String password;
 
-	private String username;
+    /**
+     * The username.
+     */
+    private String username;
 
-	//bi-directional many-to-one association to UserType
-	@ManyToOne
-	@JoinColumn(name="id_user_type")
-	private UserType userType;
+    /**
+     * bi-directional many-to-one association to UserType.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_user_type")
+    private UserType userType;
 
-	public User() {
-	}
+    /**
+     * Constructor.
+     */
+    public User() {
+    }
 
-	public Integer getIdUser() {
-		return this.idUser;
-	}
+    /**
+     * Getter of the identifier.
+     * @return the identifier.
+     */
+    public Integer getIdUser() {
+        return this.idUser;
+    }
 
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
-	}
+    /**
+     * Setter of the identifier.
+     * @param idUser is the identifier.
+     */
+    public void setIdUser(final Integer idUser) {
+        this.idUser = idUser;
+    }
 
-	public String getPassword() {
-		return this.password;
-	}
+    /**
+     * Getter of the password.
+     * @return the password.
+     */
+    public String getPassword() {
+        return this.password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    /**
+     * Setter of the password.
+     * @param password is the password.
+     */
+    public void setPassword(final String password) {
+        this.password = password;
+    }
 
-	public String getUsername() {
-		return this.username;
-	}
+    /**
+     * Getter of the username.
+     * @return the username.
+     */
+    public String getUsername() {
+        return this.username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    /**
+     * Setter of the username.
+     * @param username is the username.
+     */
+    public void setUsername(final String username) {
+        this.username = username;
+    }
 
-	public UserType getUserType() {
-		return this.userType;
-	}
+    /**
+     * Getter of the user type.
+     * @return the user type.
+     */
+    public UserType getUserType() {
+        return this.userType;
+    }
 
-	public void setUserType(UserType userType) {
-		this.userType = userType;
-	}
+    /**
+     * Setter of the user type.
+     * @param userType is the user type.
+     */
+    public void setUserType(final UserType userType) {
+        this.userType = userType;
+    }
 
 }
