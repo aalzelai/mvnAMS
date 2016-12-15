@@ -6,6 +6,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import domain.dao.DaoUserHibernate;
 import domain.model.User;
 
+/**
+ * Class LoginAction.
+ * @author PBL5
+ *
+ */
 public class LoginAction extends ActionSupport {
 
     /**
@@ -37,8 +42,8 @@ public class LoginAction extends ActionSupport {
      * Constructor.
      */
     public LoginAction() {
-    	userDao = new DaoUserHibernate();
-	}
+        userDao = new DaoUserHibernate();
+    }
 
     /**
      * The function to execute.
@@ -70,15 +75,13 @@ public class LoginAction extends ActionSupport {
         /*
         System.out.println("user: "+this.username);
 
-		return "success2";
-		
-		/*if(user != null){
+        return "success2";
+        /*if(user != null){
 			return "success1";
 		}else{
 			return "error";
 		}*/
-    	
-    	
+
     	/*
     	System.out.println("user: "+this.username);
 
