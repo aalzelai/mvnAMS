@@ -8,13 +8,7 @@ import org.hibernate.cfg.Configuration;
  * @author PBL5
  *
  */
-public final class HibernateUtil {
-
-    /**
-     * Constructor.
-     */
-    private HibernateUtil() {
-    }
+public class HibernateUtil {
 
     /**
      * The session factory.

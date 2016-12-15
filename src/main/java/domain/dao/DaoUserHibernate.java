@@ -19,7 +19,7 @@ public class DaoUserHibernate extends HibernateUtil {
      * Constructor.
      */
     public DaoUserHibernate() {
-
+    	super();
     }
 
     /*public User loadUser222(User user){
