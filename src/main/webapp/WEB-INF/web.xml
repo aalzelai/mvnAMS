@@ -5,7 +5,7 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <filter>
-    <filter-name>struts2</filter-name>
+    <filter-name>struts</filter-name>
     <filter-class>
             org.apache.struts2.dispatcher.FilterDispatcher
         </filter-class>
