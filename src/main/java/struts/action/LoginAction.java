@@ -6,16 +6,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import domain.dao.DaoUserHibernate;
 import domain.model.User;
 
-/**
- * Class of the Structs2 of the project.
- * @author PBL5
- *
- */
 public class LoginAction extends ActionSupport {
-    /**
-     * The serial version UID.
-     */
-    private static final long serialVersionUID = 1L;
 
     /**
      * The username.
@@ -53,7 +44,6 @@ public class LoginAction extends ActionSupport {
      * @return how goes the execution.
      */
     public String execute() {
-
         /*System.out.println("Username: "+user.getUsername());
         System.out.println("Password: "+user.getPassword());
         if(user.getUsername()!=null && user.getPassword()!=null){
@@ -79,18 +69,31 @@ public class LoginAction extends ActionSupport {
 
         /*
         System.out.println("user: "+this.username);
+=======
+		return "success2";
+		
+		/*if(user != null){
+			return "success1";
+		}else{
+			return "error";
+		}*/
+    	
+    	
+    	/*
+    	System.out.println("user: "+this.username);
+>>>>>>> branch 'Devel' of https://github.com/aalzelai/mvnAMS.git
         if (this.username.equals("admin1")
                 && this.password.equals("admin")) {
             return "success1";
         } else if(this.username.equals("admin2")
                 && this.password.equals("admin")) {
-            return "success2";
+        	return "success2";
         }else if(this.username.equals("admin3")
                 && this.password.equals("admin")) {
-            return "success3";
+        	return "success3";
         }else if(this.username.equals("admin4")
                 && this.password.equals("admin")) {
-            return "success4";
+        	return "success4";
         }
         else {
             addActionError(getText("error.login"));
@@ -99,30 +102,6 @@ public class LoginAction extends ActionSupport {
         */
     }
 
-
-    /**
-     * Getter of the username.
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * Setter of the username.
-     * @param username is the username
-     */
-    public void setUsername(final String username) {
-        this.username = username;
-    }
-
-    /**
-     * Getter of the password.
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
 
     /**
      * Setter of the password.
