@@ -13,5 +13,8 @@
     <s:password name="user.password" key="label.password" size="20" />
     <s:submit method="execute" key="label.login" align="center" />
 </s:form>
+<s:form action="passenger" method="post">
+<s:submit method="execute" key="label.passenger" align="center" />
+</s:form>
 </body>
 </html>

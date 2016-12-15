@@ -6,11 +6,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import domain.dao.DaoUserHibernate;
 import domain.model.User;
 
-/**
- * Class of the Structs2 of the project.
- * @author PBL5
- *
- */
 public class LoginAction extends ActionSupport {
     /**
 	 * 
@@ -33,7 +28,7 @@ public class LoginAction extends ActionSupport {
 		if(user.getUsername()!=null && user.getPassword()!=null){
 			
 		}*/
-    	    	
+
     	System.out.println("LLEGA 1");
     	
 		userList = userDao.loadUser();
@@ -90,5 +85,6 @@ public class LoginAction extends ActionSupport {
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
+
 }
 
