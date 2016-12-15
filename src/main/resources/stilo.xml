@@ -145,6 +145,9 @@
         <module name="HiddenField">
                <property name="ignoreConstructorParameter" value="true"/>
                <property name="ignoreSetter" value="true"/>
+               <property name="ignoreFormat" value="^flights1$"/>
+               <property name="severity" value="ignore"/>
+               <property name="ignoreFormat" value="^flights2$"/>
         </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>

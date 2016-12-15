@@ -8,25 +8,39 @@ import org.hibernate.Session;
 import domain.model.*;
 import hibernate.util.HibernateUtil;
 
+/**
+ * Class DaoFlight.
+ * @author PBL5
+ *
+ */
 public class DaoFlight {
-	
-	public DaoFlight(){
-		
-	}
-	
-	public List<Flight> loadFlights() {
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Flight> items = null;
+    /**
+     * Constructor.
+     */
+    public DaoFlight() {
 
-		try {
-			items = (List<Flight>) session.createQuery("from Flight ").getResultList();
+    }
 
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-		}
-		return items;
-	}
+    /**
+     * Function to load the list of the flights.
+     * @return the list of the flights.
+     */
+    @SuppressWarnings("unchecked")
+    public List<Flight> loadFlights() {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Flight> items = null;
+
+        try {
+            items = (List<Flight>) session.
+                                   createQuery("from Flight ").getResultList();
+
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return items;
+    }
 
 }
