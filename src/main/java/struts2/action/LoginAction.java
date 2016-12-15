@@ -8,7 +8,7 @@ import domain.model.User;
 
 public class LoginAction extends ActionSupport {
     /**
-	 * 
+     * j.
 	 */
 	private static final long serialVersionUID = 1L;
 	private User user;
@@ -46,8 +46,7 @@ public class LoginAction extends ActionSupport {
 		}else{
 			return "error";
 		}*/
-    	
-    	
+
     	/*
     	System.out.println("user: "+this.username);
         if (this.username.equals("admin1")

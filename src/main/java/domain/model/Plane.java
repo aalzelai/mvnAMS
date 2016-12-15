@@ -7,123 +7,219 @@ import java.util.List;
 
 /**
  * The persistent class for the plane database table.
- * 
  */
 @Entity
-@NamedQuery(name="Plane.findAll", query="SELECT p FROM Plane p")
+@NamedQuery(name = "Plane.findAll", query = "SELECT p FROM Plane p")
 public class Plane implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_plane")
-	private Integer idPlane;
+    /**
+     * The plane identifier.
+     */
+    @Id
+    @Column(name = "id_plane")
+    private Integer idPlane;
 
-	@Column(name="pos_x")
-	private double posX;
+    /**
+     * The plane position in x.
+     */
+    @Column(name = "pos_x")
+    private double posX;
 
-	@Column(name="pos_y")
-	private double posY;
+    /**
+     * The plane position in y.
+     */
+    @Column(name = "pos_y")
+    private double posY;
 
-	private Integer terminal;
+    /**
+     * The terminal of the plane.
+     */
+    private Integer terminal;
 
-	//bi-directional many-to-one association to Flight
-	@OneToMany(mappedBy="plane")
-	private List<Flight> flights;
+    /**
+     * bi-directional many-to-one association to Flight.
+     */
+    @OneToMany(mappedBy = "plane")
+    private List<Flight> flights;
 
-	//bi-directional many-to-one association to Airline
-	@ManyToOne
-	@JoinColumn(name="id_airline")
-	private Airline airline;
+    /**
+     * bi-directional many-to-one association to Airline.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_airline")
+    private Airline airline;
 
-	//bi-directional many-to-one association to PlaneStatus
-	@ManyToOne
-	@JoinColumn(name="id_status")
-	private PlaneStatus planeStatus;
+    /**
+     * bi-directional many-to-one association to PlaneStatus.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_status")
+    private PlaneStatus planeStatus;
 
-	//bi-directional many-to-one association to PlaneType
-	@ManyToOne
-	@JoinColumn(name="id_plane_type")
-	private PlaneType planeType;
+    /**
+     * //bi-directional many-to-one association to PlaneType.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_plane_type")
+    private PlaneType planeType;
 
-	public Plane() {
-	}
+    /**
+     * Constructor.
+     */
+    public Plane() {
+    }
 
-	public Integer getIdPlane() {
-		return this.idPlane;
-	}
+    /**
+     * Getter of the identifier of the plane.
+     * @return the identifier of the plane.
+     */
+    public Integer getIdPlane() {
+        return this.idPlane;
+    }
 
-	public void setIdPlane(Integer idPlane) {
-		this.idPlane = idPlane;
-	}
+    /**
+     * Setter of the identifier of the plane.
+     * @param idPlane is the identifier of the plane.
+     */
+    public void setIdPlane(final Integer idPlane) {
+        this.idPlane = idPlane;
+    }
 
-	public double getPosX() {
-		return this.posX;
-	}
+    /**
+     * Getter of the position of the plane in x.
+     * @return the position of the plane in x.
+     */
+    public double getPosX() {
+        return this.posX;
+    }
 
-	public void setPosX(double posX) {
-		this.posX = posX;
-	}
+    /**
+     * Setter of the position fo the plane in x.
+     * @param posX is the position of the plane in x.
+     */
+    public void setPosX(final double posX) {
+        this.posX = posX;
+    }
 
-	public double getPosY() {
-		return this.posY;
-	}
+    /**
+     * Getter of the position of the plane in y.
+     * @return the position of the plane in y.
+     */
+    public double getPosY() {
+        return this.posY;
+    }
 
-	public void setPosY(double posY) {
-		this.posY = posY;
-	}
+    /**
+     * Setter of the position of the plane in y.
+     * @param posY is the position of the plane in y.
+     */
+    public void setPosY(final double posY) {
+        this.posY = posY;
+    }
 
-	public Integer getTerminal() {
-		return this.terminal;
-	}
+    /**
+     * Getter of the terminal.
+     * @return the terminal.
+     */
+    public Integer getTerminal() {
+        return this.terminal;
+    }
 
-	public void setTerminal(Integer terminal) {
-		this.terminal = terminal;
-	}
+    /**
+     * Setter of the terminal.
+     * @param terminal is the terminal.
+     */
+    public void setTerminal(final Integer terminal) {
+        this.terminal = terminal;
+    }
 
-	public List<Flight> getFlights() {
-		return this.flights;
-	}
+    /**
+     * Getter of the list of flights of the plane.
+     * @return the list of the flights.
+     */
+    public List<Flight> getFlights() {
+        return this.flights;
+    }
 
-	public void setFlights(List<Flight> flights) {
-		this.flights = flights;
-	}
+    /**
+     * Setter of the list of the flight of the plane.
+     * @param flights is the list of the flights of the plane.
+     */
+    public void setFlights(final List<Flight> flights) {
+        this.flights = flights;
+    }
 
-	public Flight addFlight(Flight flight) {
-		getFlights().add(flight);
-		flight.setPlane(this);
+    /**
+     * Function to add a flight to the list.
+     * @param flight is the flight to add.
+     * @return the added flight.
+     */
+    public Flight addFlight(final Flight flight) {
+        getFlights().add(flight);
+        flight.setPlane(this);
 
-		return flight;
-	}
+        return flight;
+    }
 
-	public Flight removeFlight(Flight flight) {
-		getFlights().remove(flight);
-		flight.setPlane(null);
+    /**
+     * Function to remove a flight from the list.
+     * @param flight is the flight to remove.
+     * @return the removed flight.
+     */
+    public Flight removeFlight(final Flight flight) {
+        getFlights().remove(flight);
+        flight.setPlane(null);
 
-		return flight;
-	}
+        return flight;
+    }
 
-	public Airline getAirline() {
-		return this.airline;
-	}
+    /**
+     * Getter of the airline.
+     * @return the airline.
+     */
+    public Airline getAirline() {
+        return this.airline;
+    }
 
-	public void setAirline(Airline airline) {
-		this.airline = airline;
-	}
+    /**
+     * Setter of the airline.
+     * @param airline is the airline.
+     */
+    public void setAirline(final Airline airline) {
+        this.airline = airline;
+    }
 
-	public PlaneStatus getPlaneStatus() {
-		return this.planeStatus;
-	}
+    /**
+     * Getter of the status of the plane.
+     * @return the status of the plane.
+     */
+    public PlaneStatus getPlaneStatus() {
+        return this.planeStatus;
+    }
 
-	public void setPlaneStatus(PlaneStatus planeStatus) {
-		this.planeStatus = planeStatus;
-	}
+    /**
+     * Setter of the status of the plane.
+     * @param planeStatus is the status of the plane.
+     */
+    public void setPlaneStatus(final PlaneStatus planeStatus) {
+        this.planeStatus = planeStatus;
+    }
 
-	public PlaneType getPlaneType() {
-		return this.planeType;
-	}
+    /**
+     * Getter of the type of the plane.
+     * @return the type of the plane.
+     */
+    public PlaneType getPlaneType() {
+        return this.planeType;
+    }
 
-	public void setPlaneType(PlaneType planeType) {
-		this.planeType = planeType;
-	}
+    /**
+     * Setter of the type of the plane.
+     * @param planeType is the type of the plane.
+     */
+    public void setPlaneType(final PlaneType planeType) {
+        this.planeType = planeType;
+    }
 
 }

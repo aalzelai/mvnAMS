@@ -6,73 +6,128 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the lane database table.
- * 
  */
 @Entity
-@NamedQuery(name="Lane.findAll", query="SELECT l FROM Lane l")
+@NamedQuery(name = "Lane.findAll", query = "SELECT l FROM Lane l")
 public class Lane implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_lane")
-	private Integer idLane;
+    /**
+     * The identifier of the lane.
+     */
+    @Id
+    @Column(name = "id_lane")
+    private Integer idLane;
 
-	@Column(name="lane_order")
-	private Integer laneOrder;
+    /**
+     * The column of the lane order.
+     */
+    @Column(name = "lane_order")
+    private Integer laneOrder;
 
-	private String taken;
+    /**
+     * To see if the lane is taken.
+     */
+    private String taken;
 
-	//bi-directional many-to-one association to Airport
-	@ManyToOne
-	@JoinColumn(name="id_airport")
-	private Airport airport;
+    /**
+     * bi-directional many-to-one association to Airport.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_airport")
+    private Airport airport;
 
-	//bi-directional many-to-one association to LaneType
-	@ManyToOne
-	@JoinColumn(name="id_lane_type")
-	private LaneType laneType;
+    /**
+     * bi-directional many-to-one association to LaneType.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_lane_type")
+    private LaneType laneType;
 
-	public Lane() {
-	}
+    /**
+     * Constructor.
+     */
+    public Lane() {
+    }
 
-	public Integer getIdLane() {
-		return this.idLane;
-	}
+    /**
+     * Getter of the identifier of the lane.
+     * @return the identifier.
+     */
+    public Integer getIdLane() {
+        return this.idLane;
+    }
 
-	public void setIdLane(Integer idLane) {
-		this.idLane = idLane;
-	}
+    /**
+     * Setter of the identifier of the lane.
+     * @param idLane is the identifier.
+     */
+    public void setIdLane(final Integer idLane) {
+        this.idLane = idLane;
+    }
 
-	public Integer getLaneOrder() {
-		return this.laneOrder;
-	}
+    /**
+     * Getter of the lane order.
+     * @return the order lane.
+     */
+    public Integer getLaneOrder() {
+        return this.laneOrder;
+    }
 
-	public void setLaneOrder(Integer laneOrder) {
-		this.laneOrder = laneOrder;
-	}
+    /**
+     * Setter of the lane order.
+     * @param laneOrder is the order.
+     */
+    public void setLaneOrder(final Integer laneOrder) {
+        this.laneOrder = laneOrder;
+    }
 
-	public String getTaken() {
-		return this.taken;
-	}
+    /**
+     * Getter of the taken attribute.
+     * @return attribute.
+     */
+    public String getTaken() {
+        return this.taken;
+    }
 
-	public void setTaken(String taken) {
-		this.taken = taken;
-	}
+    /**
+     * Setter of the taken attribute.
+     * @param taken is the attribute.
+     */
+    public void setTaken(final String taken) {
+        this.taken = taken;
+    }
 
-	public Airport getAirport() {
-		return this.airport;
-	}
+    /**
+     * Getter of the airport.
+     * @return the airport.
+     */
+    public Airport getAirport() {
+        return this.airport;
+    }
 
-	public void setAirport(Airport airport) {
-		this.airport = airport;
-	}
+    /**
+     * Setter of the airport.
+     * @param airport is the airport.
+     */
+    public void setAirport(final Airport airport) {
+        this.airport = airport;
+    }
 
-	public LaneType getLaneType() {
-		return this.laneType;
-	}
+    /**
+     * Getter of the lane type.
+     * @return the lane type.
+     */
+    public LaneType getLaneType() {
+        return this.laneType;
+    }
 
-	public void setLaneType(LaneType laneType) {
-		this.laneType = laneType;
-	}
+    /**
+     * Setter of the lane type.
+     * @param laneType is the lane type.
+     */
+    public void setLaneType(final LaneType laneType) {
+        this.laneType = laneType;
+    }
 
 }

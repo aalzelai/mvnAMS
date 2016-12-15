@@ -7,63 +7,108 @@ import java.util.List;
 
 /**
  * The persistent class for the flight_status database table.
- * 
  */
 @Entity
-@Table(name="flight_status")
-@NamedQuery(name="FlightStatus.findAll", query="SELECT f FROM FlightStatus f")
+@Table(name = "flight_status")
+@NamedQuery(name = "FlightStatus.findAll",
+            query = "SELECT f FROM FlightStatus f")
 public class FlightStatus implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_status")
-	private Integer idStatus;
+    /**
+     * The identifier of the status.
+     */
+    @Id
+    @Column(name = "id_status")
+    private Integer idStatus;
 
-	private String description;
+    /**
+     * The description.
+     */
+    private String description;
 
-	//bi-directional many-to-one association to Flight
-	@OneToMany(mappedBy="flightStatus")
-	private List<Flight> flights;
+    /**
+     * bi-directional many-to-one association to Flight.
+     */
+    @OneToMany(mappedBy = "flightStatus")
+    private List<Flight> flights;
 
-	public FlightStatus() {
-	}
+    /**
+     * Constructor.
+     */
+    public FlightStatus() {
+    }
 
-	public Integer getIdStatus() {
-		return this.idStatus;
-	}
+    /**
+     * Getter of the status identifier.
+     * @return the identifier.
+     */
+    public Integer getIdStatus() {
+        return this.idStatus;
+    }
 
-	public void setIdStatus(Integer idStatus) {
-		this.idStatus = idStatus;
-	}
+    /**
+     * Setter of the status identifier.
+     * @param idStatus is the identifier.
+     */
+    public void setIdStatus(final Integer idStatus) {
+        this.idStatus = idStatus;
+    }
 
-	public String getDescription() {
-		return this.description;
-	}
+    /**
+     * Getter of the description.
+     * @return the description.
+     */
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * Setter of the description.
+     * @param description is the description.
+     */
+    public void setDescription(final String description) {
+        this.description = description;
+    }
 
-	public List<Flight> getFlights() {
-		return this.flights;
-	}
+    /**
+     * Getter of the list of flights.
+     * @return the list of flights.
+     */
+    public List<Flight> getFlights() {
+        return this.flights;
+    }
 
-	public void setFlights(List<Flight> flights) {
-		this.flights = flights;
-	}
+    /**
+     * Setter of the list of the flights.
+     * @param flights is the list of the flights.
+     */
+    public void setFlights(final List<Flight> flights) {
+        this.flights = flights;
+    }
 
-	public Flight addFlight(Flight flight) {
-		getFlights().add(flight);
-		flight.setFlightStatus(this);
+    /**
+     * Function to add a flight to the list.
+     * @param flight is the flight to add.
+     * @return the added flight.
+     */
+    public Flight addFlight(final Flight flight) {
+        getFlights().add(flight);
+        flight.setFlightStatus(this);
 
-		return flight;
-	}
+        return flight;
+    }
 
-	public Flight removeFlight(Flight flight) {
-		getFlights().remove(flight);
-		flight.setFlightStatus(null);
+    /**
+     * Function to remove a flight from the list.
+     * @param flight is the flight to remove.
+     * @return the removed flight.
+     */
+    public Flight removeFlight(final Flight flight) {
+        getFlights().remove(flight);
+        flight.setFlightStatus(null);
 
-		return flight;
-	}
+        return flight;
+    }
 
 }

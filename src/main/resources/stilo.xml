@@ -91,7 +91,11 @@
 
         <!-- Checks for imports                              -->
         <!-- See http://checkstyle.sf.net/config_import.html -->
-        <module name="AvoidStarImport"/>
+        <module name="AvoidStarImport">
+               <property name="excludes" value="java.io,java.net,java.lang.Math"/>
+               <property name="allowClassImports" value="true"/>
+               <property name="allowStaticMemberImports" value="false"/>
+        </module>
         <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
         <module name="RedundantImport"/>
         <module name="UnusedImports">
@@ -103,7 +107,7 @@
         <module name="LineLength"/>
         <module name="MethodLength"/>
         <module name="ParameterNumber">
-            <property name="max" value="10"/>
+            <property name="max" value="20"/>
             <property name="tokens" value="METHOD_DEF"/>
         </module>
 
@@ -164,6 +168,26 @@
         <module name="TodoComment"/>
         <module name="UpperEll"/>
 
+        <!-- Cyclomatic complexity -->
+        <module name="CyclomaticComplexity">
+              <property name="max" value="10"/>
+        </module>
+
+        <!-- Return count -->
+        <module name="ReturnCount">
+              <property name="max" value="1"/>
+        </module>
+
+        <!-- Number of logical operators -->
+        <module name="NPathComplexity">
+              <property name="max" value="10"/>
+        </module>
+
+        <!-- Number of lines of code in a class -->
+        <module name="JavaNCSS">
+              <property name="classMaximum" value="700"/>
+              <property name="methodMaximum" value="60"/>
+        </module>
     </module>
 
 </module>
