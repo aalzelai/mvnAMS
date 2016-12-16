@@ -34,7 +34,6 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping class="domain.model.Airline" />
-        <mapping class="domain.model.Airplane" />
         <mapping class="domain.model.Airport" />
         <mapping class="domain.model.Flight" />
         <mapping class="domain.model.FlightStatus" />

@@ -19,22 +19,23 @@
 			<th>Place out</th>
 			<th>Time arrive</th>
 			<th>Place arrive</th>
-			<th>Hangar</th>
-			<th>Pista</th>
-			<th>Puerta</th>
+			<th>Delay</th>
+			<th>Gate number</th>
+			<th>Baggage number</th>
 		</tr>
-		<s:iterator var="flight" value="lstFlights">
+		<s:iterator var="flight" value="flightList">
 			<tr>
-				<td><s:property value="flight.id" /></td>
-				<td><s:property value="flight.airplane" /></td>
-				<td><s:property value="flight.estate" /></td>
-				<td><s:property value="flight.id" /></td>
-				<td><s:property value="flight.time_In" /></td>
-				<td><s:property value="flight.airport_In" /></td>
-				<td><s:property value="flight.time_Out" /></td>
-				<td><s:property value="flight.airport_Out" /></td>
-				<td><s:property value="flight.id" /></td>
-				<td><s:property value="flight.id" /></td>
+				<td><s:property value="#flight.idFlight" /></td>
+				<td><s:property value="#flight.plane" /></td>
+				<td><s:property value="#flight.flightStatus" /></td>
+				<td><s:property value="#a" /></td>
+				<td><s:property value="#flight.dateTimeFrom" /></td>
+				<td><s:property value="#flight.airport1" /></td>
+				<td><s:property value="#flight.dateTimeTo" /></td>
+				<td><s:property value="#flight.airport2" /></td>
+				<td><s:property value="#flight.delay" /></td>
+				<td><s:property value="#flight.gateNumber" /></td>
+				<td><s:property value="#flight.baggageNumber" /></td>
 			</tr>
 		</s:iterator>
 	</table>
