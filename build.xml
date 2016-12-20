@@ -128,11 +128,15 @@
     </path>
   	<target name="clean-compile-deploy">
   		<exec executable="./scripts/addMaven.bat"></exec>
+  		<antcall target="stop"></antcall>
   		<antcall target="deploy"/>
   	</target>
     <target name="deploy">
 	    <echo>Deploy to server</echo>
 	    <copy todir="./tomcat8/webapps" file="./target/mvnAMS.war"/>
     	<exec executable="./scripts/tomcatStart.bat"></exec>
+    </target>
+    <target name="stop">
+    	<exec executable="./scripts/tomcatStop.bat"></exec>
     </target>
 </project>
