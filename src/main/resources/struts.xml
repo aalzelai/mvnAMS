@@ -19,7 +19,7 @@
             <result name="success4">Welcome4.jsp</result>
             <result name="error">index.jsp</result>
         </action>
-        <action name="passenger"
+        <action name="index"
             class="struts.action.PassengerAction">
             <result name="success">pages/PassengerIndex.jsp</result>
             <result name="error">index.jsp</result>
@@ -28,7 +28,7 @@
 
     <package name="serveAll" namespace="" extends="struts-default">
         <action name="*">
-            <result>/main/webapp/pages/404.jsp</result>
+            <result>pages/404.jsp</result>
         </action>
 </package>
 </struts>

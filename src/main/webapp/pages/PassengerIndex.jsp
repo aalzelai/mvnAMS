@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Passenger</title>
+<title>Goreal Planes</title>
 </head>
 <body>
-	<s:label>Passenger info</s:label>
+
+
 	<table border="1px solid black">
 		<tr>
 			<th>Id</th>
@@ -26,13 +27,13 @@
 		<s:iterator var="flight" value="flightList">
 			<tr>
 				<td><s:property value="#flight.idFlight" /></td>
-				<td><s:property value="#flight.plane" /></td>
-				<td><s:property value="#flight.flightStatus" /></td>
-				<td><s:property value="#a" /></td>
-				<td><s:property value="#flight.dateTimeFrom" /></td>
-				<td><s:property value="#flight.airport1" /></td>
-				<td><s:property value="#flight.dateTimeTo" /></td>
-				<td><s:property value="#flight.airport2" /></td>
+				<td><s:property value="#flight.plane.planeType.description" /></td>
+				<td><s:property value="#flight.flightStatus.description" /></td>
+				<td><s:property value="#flight.plane.airline.name" /></td>
+				<td><s:property value="#flight.timeFrom" /></td>
+				<td><s:property value="#flight.airport1.name" /></td>
+				<td><s:property value="#flight.timeTo" /></td>
+				<td><s:property value="#flight.airport2.name" /></td>
 				<td><s:property value="#flight.delay" /></td>
 				<td><s:property value="#flight.gateNumber" /></td>
 				<td><s:property value="#flight.baggageNumber" /></td>
