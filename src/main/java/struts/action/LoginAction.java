@@ -3,7 +3,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import domain.dao.DaoUserHibernate;
+import domain.dao.DaoUser;
 import domain.model.User;
 
 /**
@@ -36,13 +36,13 @@ public class LoginAction extends ActionSupport {
     /**
      * The hibernate.
      */
-    private DaoUserHibernate userDao;
+    private DaoUser userDao;
 
     /**
      * Constructor.
      */
     public LoginAction() {
-        userDao = new DaoUserHibernate();
+        userDao = new DaoUser();
     }
 
     /**

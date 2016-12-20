@@ -6,6 +6,17 @@
 </head>
  
 <body>
+
+<nav>
+<a href="#">Goreal Planes</a>
+<s:if test="%{#session.user==null}">
+	<a href="#">Log in</a>
+</s:if>
+<s:else>
+	<a href="#">Log out</a>
+</s:else>
+</nav>
+
 <h2>Struts 2 - Login Application</h2>
 <s:actionerror />
 <s:form action="login.action" method="post">
