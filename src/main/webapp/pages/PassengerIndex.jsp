@@ -39,5 +39,8 @@
 			</tr>
 		</s:iterator>
 	</table>
+	<form action="pages/map.jsp" method="get" >
+	<button type="submit">Map</button>
+	</form>
 </body>
 </html>
