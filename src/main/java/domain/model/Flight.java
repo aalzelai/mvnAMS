@@ -162,4 +162,12 @@ public class Flight implements Serializable {
 		return ticket;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return ""+idFlight;
+	}
+	
+	
+
 }
