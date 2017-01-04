@@ -1,6 +1,8 @@
 package struts.action;
 import java.util.List;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import domain.dao.DaoUser;
@@ -63,8 +65,11 @@ public class LoginAction extends ActionSupport {
         System.out.println("LLEGA 2");
 
         System.out.println("Hay " + userList.size() + " usuarios");
+        
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        session.put("user", userList.get(0));
 
-        return "success2";
+        return "success1";
 
         /*if(user != null){
             return "success1";
