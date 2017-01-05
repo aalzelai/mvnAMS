@@ -19,6 +19,11 @@
             <result name="success4">Welcome4.jsp</result>
             <result name="error">index.jsp</result>
         </action>
+        <action name="logout"
+            class="struts.action.LoginAction" method="removeUser">
+            <result name="success1">pages/PassengerIndex.jsp</result>
+            <result name="error">index.jsp</result>
+        </action>
         <action name="index"
             class="struts.action.PassengerAction">
             <result name="success">pages/PassengerIndex.jsp</result>

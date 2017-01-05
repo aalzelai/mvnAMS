@@ -2,6 +2,9 @@ package domain.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -22,25 +25,22 @@ public class DaoUser extends HibernateUtil {
     	super();
     }
 
-    /*public User loadUser222(User user){
+    public User loadUser(String username, String password){
         Session session =
-                HibernateUtil.createSessionFactory().getCurrentSession();
-        session.beginTransaction();
+        		HibernateUtil.getSessionFactory().openSession();
         User usuario = null;
         try{
-            Query query = session.createQuery(
-                          "from User where username =
-                          :username and password = :password ");
-            query.setParameter("username", user.getUsername());
-            query.setParameter("password", user.getPassword());
+            Query query = session.createQuery("from User where username = :username and password = :password ");
+            query.setParameter("username", username);
+            query.setParameter("password", password);
             usuario = (User) query.getSingleResult();
         } catch (HibernateException e) {
             e.printStackTrace();
-            session.getTransaction().rollback();
+        } catch (NoResultException e1){
+        	usuario = null;
         }
-        session.getTransaction().commit();
         return usuario;
-    }*/
+    }
 
     /*
      // For adding items in the Items table.
@@ -75,7 +75,7 @@ public class DaoUser extends HibernateUtil {
      * Function to load the list of the users.
      * @return the list of the users.
      */
-    public List<User> loadUser() {
+    public List<User> loadUserList() {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<User> items = null;
