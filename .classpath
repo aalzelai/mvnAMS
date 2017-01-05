@@ -74,7 +74,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-digester3-3.2-with-deps.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-digester3-3.2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/easymock-2.3.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/junit-4.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/postgresql-9.4.1212.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Hibernate"/>

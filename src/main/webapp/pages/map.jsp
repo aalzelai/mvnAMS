@@ -14,12 +14,17 @@
 <title>Current Flight</title>
 <script type="text/JavaScript">
 	$(document).ready(function() {
-	    var flights = <s:property value="flightList"/>;
-		//alert(flights.toString());
+	    var flights = <s:property value="data"/>;
+	    document.getElementById('hiddenData').value = flights;
+	    var flightsData = flights.split("%"); //Separate flights from the big string
+		var flightFragments = flightsData[0].split("$"); //Separate each part from the flight (id, coord1, coord2);
+		var coordenatesAirport = flightFragments[1].split("/");
+		alert(coordenatesAirport);
 	    });
   </script>
 </head>
 <body onload="createMap()">
    <div id="map" class="map"></div>
+   <input type="hidden" id="hiddenData" />
 </body>
 </html>

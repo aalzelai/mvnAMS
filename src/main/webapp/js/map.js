@@ -5,6 +5,13 @@
     function createMap(){
 		var heathrow = ol.proj.fromLonLat([-0.459093681628075, 51.467772]);
 		var point1 = ol.proj.fromLonLat([-0.509093681628075, 51.467772]);
+		var dataString = document.getElementById('hiddenData').value;
+		
+		var flightsData = dataString.split("%"); //Separate flights from the big string
+		var flightFragments = flightsData[0].split("$"); //Separate each part from the flight (id, coord1, coord2)
+		var coordenatesAirport = flightFragments[1].split("/");
+		var coordenatesPlane = flightFragments[2].split("/");
+		var angle = parseInt(flightFragments[3]);
     	var tileLayer = new ol.layer.Tile({
     	    source: new ol.source.OSM()
     	});
@@ -19,7 +26,7 @@
     	});
 
     	var features = new Array();
-    	var coordinates = [[-0.509093681628075, 51.467772],[-0.459093681628075, 51.467772]];
+    	var coordinates = [[parseFloat(coordenatesAirport[0]), parseFloat(coordenatesAirport[1])],[parseFloat(coordenatesPlane[0]), parseFloat(coordenatesPlane[1])]];
     	var transformedCoordinates = new Array();
 
     	for (var i = 0; i < coordinates.length; ++i) {
@@ -42,26 +49,6 @@
     	    style: function (feature, resolution) {
     	        var size = feature.get('features').length;
     	        var style = styleCache[size];
-    	        /*if (!style) {
-    	            style = [new ol.style.Style({
-    	                image: new ol.style.Circle({
-    	                    radius: 10,
-    	                    stroke: new ol.style.Stroke({
-    	                        color: '#fff'
-    	                    }),
-    	                    fill: new ol.style.Fill({
-    	                        color: '#3399CC'
-    	                    })
-    	                }),
-    	                text: new ol.style.Text({
-    	                    text: size.toString(),
-    	                    fill: new ol.style.Fill({
-    	                        color: '#fff'
-    	                    })
-    	                })
-    	            })];
-    	            styleCache[size] = style;
-    	        }*/
     	        return style;
     	    }
     	});
@@ -90,31 +77,6 @@
     	    });
     	    featureLine.setStyle(lineStyle);
     	    vectorLine.addFeature(featureLine);
-    	    var firstPoint = coordinates[0];
-    	    var secondPoint = coordinates[i];
-    	    var slope = ((secondPoint[1] - firstPoint[1]) / (secondPoint[0] - firstPoint[0]));
-    	    var angle = Math.atan(slope);
-    	    var rotation;
-
-    	    //Shifting the graph Origin to point of start point
-    	    secondPoint[0] = secondPoint[0] - firstPoint[0];
-    	    secondPoint[1] = secondPoint[1] - firstPoint[1];
-    	    //Fourth quadrant
-    	    if (secondPoint[0] > 0 && secondPoint[1] < 0) {
-    	        rotation = (Math.PI / 2 - angle);
-    	    }
-    	    //Second quadrant
-    	    else if (secondPoint[0] < 0 && secondPoint[1] > 0) {
-    	        rotation = -(Math.PI / 2 + angle);
-    	    }
-    	    //Third quadrant
-    	    else if (secondPoint[0] < 0 && secondPoint[1] < 0) {
-    	        rotation = 3 * Math.PI / 2 - angle;
-    	    }
-    	    //First quadrant
-    	    else if (secondPoint[0] > 0 && secondPoint[1] > 0) {
-    	        rotation = angle;
-    	    }
     	    var iconStyle = new ol.style.Style({
     	        image: new ol.style.Icon(({
     	        	 anchor: [12, 12],
@@ -122,7 +84,7 @@
     	        	    anchorYUnits: 'pixels',
     	            opacity: 1,
     	            src: 'data/plane.png',
-    	            rotation: rotation
+    	            rotation: -(angle*Math.PI/180)
     	        }))
     	    });
     	    var iconFeature = new ol.Feature({

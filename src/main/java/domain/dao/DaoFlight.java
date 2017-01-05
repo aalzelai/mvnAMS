@@ -2,6 +2,8 @@ package domain.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -40,7 +42,7 @@ public class DaoFlight {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
+        session.close();
         return items;
     }
-
 }
