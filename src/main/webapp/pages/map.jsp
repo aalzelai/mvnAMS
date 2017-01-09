@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/map.js"></script>
 <link rel="stylesheet" href="https://openlayers.org/en/v3.20.1/css/ol.css" type="text/css">
+<link rel="stylesheet" href="css/map.css" type="text/css">
     <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
     <script src="https://openlayers.org/en/v3.20.1/build/ol.js"></script>
@@ -16,15 +17,17 @@
 	$(document).ready(function() {
 	    var flights = <s:property value="data"/>;
 	    document.getElementById('hiddenData').value = flights;
-	    var flightsData = flights.split("%"); //Separate flights from the big string
-		var flightFragments = flightsData[0].split("$"); //Separate each part from the flight (id, coord1, coord2);
-		var coordenatesAirport = flightFragments[1].split("/");
-		alert(coordenatesAirport);
+	    createMap();
 	    });
   </script>
+  <script type="text/JavaScript">
+  	setTimeout(function(){
+	   window.location.reload(1);
+		}, 5000);
+  </script>
 </head>
-<body onload="createMap()">
+<body>
    <div id="map" class="map"></div>
-   <input type="hidden" id="hiddenData" />
+   <input type="hidden" id="hiddenData" value="0"/>
 </body>
 </html>

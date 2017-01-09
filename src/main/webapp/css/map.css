@@ -1,20 +1,14 @@
 @CHARSET "UTF-8";
-a.skiplink {
-        position: absolute;
-        clip: rect(1px, 1px, 1px, 1px);
-        padding: 0;
-        border: 0;
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
+      #map {
+      width: 100%;
+      float: right;
+      box-sizing: border-box;
       }
-      a.skiplink:focus {
-        clip: auto;
-        height: auto;
-        width: auto;
-        background-color: #fff;
-        padding: 0.3em;
-      }
-      #map:focus {
-        outline: #4A74A8 solid 0.15em;
+      #aside {
+      width: 25%;
+      height: 100vh;
+      float: left;
+      box-sizing: border-box;
+      position: fixed;
+      visibility: hidden;
       }
