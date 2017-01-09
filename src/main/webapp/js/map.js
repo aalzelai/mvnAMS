@@ -6,12 +6,8 @@
 		var heathrow = ol.proj.fromLonLat([-0.459093681628075, 51.467772]);
 		var point1 = ol.proj.fromLonLat([-0.509093681628075, 51.467772]);
 		var dataString = document.getElementById('hiddenData').value;
-		
+		var vectorLayer = [];
 		var flightsData = dataString.split("%"); //Separate flights from the big string
-		var flightFragments = flightsData[0].split("$"); //Separate each part from the flight (id, coord1, coord2)
-		var coordenatesAirport = flightFragments[1].split("/");
-		var coordenatesPlane = flightFragments[2].split("/");
-		var angle = parseInt(flightFragments[3]);
     	var tileLayer = new ol.layer.Tile({
     	    source: new ol.source.OSM()
     	});
@@ -24,7 +20,11 @@
     	    }),
     	    target: 'map'
     	});
-
+    	for(var j = 0; j < flightsData.length; j++){
+    		var flightFragments = flightsData[j].split("$"); //Separate each part from the flight (id, coord1, coord2)
+    		var coordenatesAirport = flightFragments[1].split("/");
+    		var coordenatesPlane = flightFragments[2].split("/");
+    		var angle = parseInt(flightFragments[3]);
     	var features = new Array();
     	var coordinates = [[parseFloat(coordenatesAirport[0]), parseFloat(coordenatesAirport[1])],[parseFloat(coordenatesPlane[0]), parseFloat(coordenatesPlane[1])]];
     	var transformedCoordinates = new Array();
@@ -93,10 +93,9 @@
     	    iconFeature.setStyle(iconStyle);
     	    vectorLine.addFeature(iconFeature);
     	}
-    	var vectorLayer = new ol.layer.Vector({
+    	vectorLayer[j] = new ol.layer.Vector({
     	    source: vectorLine
     	});
-    	map.addLayer(vectorLayer);
-
-
+    	map.addLayer(vectorLayer[j]);
+    	}
 }
