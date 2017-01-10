@@ -10,7 +10,7 @@
             org.postgresql.Driver
         </property>
         <property name="connection.url">
-            jdbc:postgresql://localhost:5432/ams
+            jdbc:postgresql://192.168.22.1:5432/ams
         </property>
         <property name="connection.username">postgres</property>
         <property name="connection.password">root</property>
