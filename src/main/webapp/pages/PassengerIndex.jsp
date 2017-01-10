@@ -77,7 +77,7 @@
 		</tbody>
 		
 	</table>
-<s:if test="#session.user.userType.description.equals('Passenger')">
+	<s:if test="#session.user.userType.description.equals('Passenger')">
 		<p>Pasajero</p>
 	</s:if>
 	<s:if test="#session.user.userType.description.equals('Airline')">
@@ -88,7 +88,6 @@
 	</s:if>
 	
 </div>	
-	<form action="map.action" method="get" >
-		<button type="submit">Map</button>
-	</form></body>
+
+</body>
 </html>

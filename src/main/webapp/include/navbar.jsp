@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Home</a></li>
         <s:if test="%{#session.user.userType.description.equals('Airline') || #session.user.userType.description.equals('Airport_Controller')}">
-			<li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
+			<li><a href="map.action"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
 		</s:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
