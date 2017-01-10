@@ -1,10 +1,13 @@
 package struts.action;
 import java.util.List;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-import domain.dao.DaoUserHibernate;
+import domain.dao.DaoUser;
 import domain.model.User;
+
 
 /**
  * Class LoginAction.
@@ -12,16 +15,6 @@ import domain.model.User;
  *
  */
 public class LoginAction extends ActionSupport {
-
-    /**
-     * The username.
-     */
-    private String username;
-
-    /**
-     * The password.
-     */
-    private String password;
 
     /**
      * The user.
@@ -36,13 +29,13 @@ public class LoginAction extends ActionSupport {
     /**
      * The hibernate.
      */
-    private DaoUserHibernate userDao;
+    private DaoUser userDao;
 
     /**
      * Constructor.
      */
     public LoginAction() {
-        userDao = new DaoUserHibernate();
+        userDao = new DaoUser();
     }
 
     /**
@@ -50,69 +43,30 @@ public class LoginAction extends ActionSupport {
      * @return how goes the execution.
      */
     public String execute() {
-        /*System.out.println("Username: "+user.getUsername());
+        System.out.println("Username: "+user.getUsername());
         System.out.println("Password: "+user.getPassword());
         if(user.getUsername()!=null && user.getPassword()!=null){
-
-        }*/
-
-        System.out.println("LLEGA 1");
-
-        userList = userDao.loadUser();
-
-        System.out.println("LLEGA 2");
-
-        System.out.println("Hay " + userList.size() + " usuarios");
-
-        return "success2";
-
-        /*if(user != null){
-            return "success1";
-        }else{
-            return "error";
-        }*/
-
-        /*
-        System.out.println("user: "+this.username);
-
-        return "success2";
-        /*if(user != null){
-			return "success1";
-		}else{
-			return "error";
-		}*/
-
-    	/*
-    	System.out.println("user: "+this.username);
-
-        if (this.username.equals("admin1")
-                && this.password.equals("admin")) {
-            return "success1";
-        } else if(this.username.equals("admin2")
-                && this.password.equals("admin")) {
-        	return "success2";
-        }else if(this.username.equals("admin3")
-                && this.password.equals("admin")) {
-        	return "success3";
-        }else if(this.username.equals("admin4")
-                && this.password.equals("admin")) {
-        	return "success4";
+        	Object loggedUser = new User();
+        	loggedUser = userDao.loadUser(user.getUsername(), user.getPassword());
+        	
+        	Map<String, Object> session = ActionContext.getContext().getSession();
+        	if(loggedUser != null){
+        		session.put("user", loggedUser);
+        		session.put("loginError", false);
+        	}else{
+        		session.put("loginError", true);
+        	}
         }
-        else {
-            addActionError(getText("error.login"));
-            return "error";
-        }
-        */
+        return "success";
+    }
+    
+    public String removeUser(){
+    	Map<String, Object> session = ActionContext.getContext().getSession();
+		session.remove("user");
+				
+		return "success";
     }
 
-
-    /**
-     * Setter of the password.
-     * @param password is the password
-     */
-    public void setPassword(final String password) {
-        this.password = password;
-    }
 
     /**
      * Getter of the user.

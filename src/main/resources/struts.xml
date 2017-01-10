@@ -6,20 +6,22 @@
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation"
         value="false" />
-    <constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="true" />
     <constant name="struts.custom.i18n.resources"
         value="ApplicationResources" />
 
     <package name="default" extends="struts-default" namespace="/">
         <action name="login"
             class="struts.action.LoginAction">
-            <result name="success1">Welcome1.jsp</result>
-            <result name="success2">Welcome2.jsp</result>
-            <result name="success3">Welcome3.jsp</result>
-            <result name="success4">Welcome4.jsp</result>
+            <result name="success">pages/PassengerIndex.jsp</result>
             <result name="error">index.jsp</result>
         </action>
-        <action name="passenger"
+        <action name="logout"
+            class="struts.action.LoginAction" method="removeUser">
+            <result name="success">pages/PassengerIndex.jsp</result>
+            <result name="error">index.jsp</result>
+        </action>
+        <action name="index"
             class="struts.action.PassengerAction">
             <result name="success">pages/PassengerIndex.jsp</result>
             <result name="error">index.jsp</result>
@@ -30,10 +32,9 @@
             <result name="error">index.jsp</result>
         </action>
     </package>
-
     <package name="serveAll" namespace="" extends="struts-default">
         <action name="*">
-            <result>/main/webapp/pages/404.jsp</result>
+            <result>pages/404.jsp</result>
         </action>
-</package>
+	</package>
 </struts>

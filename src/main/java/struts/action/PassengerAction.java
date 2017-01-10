@@ -1,7 +1,9 @@
 package struts.action;
 
 import java.util.List;
+import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import domain.dao.*;
@@ -39,21 +41,14 @@ public class PassengerAction extends ActionSupport {
      * @return the answer.
      */
     public String execute() {
-
-        /*System.out.println("Username: "+user.getUsername());
-        System.out.println("Password: "+user.getPassword());
-
-        if(user.getUsername()!=null && user.getPassword()!=null){
-
-        }*/
-
+    	Map<String, Object> session = ActionContext.getContext().getSession();
         flightDao = new DaoFlight();
 
         flightList = flightDao.loadFlights();
-        System.out.println("success");
+        
+        session.put("flightList", flightList);
 
         return "success";
-
     }
 
     /**

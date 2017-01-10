@@ -10,12 +10,16 @@
             org.postgresql.Driver
         </property>
         <property name="connection.url">
-            jdbc:postgresql://192.168.22.1:5432/ams
+            jdbc:postgresql://localhost:5432/ams
         </property>
         <property name="connection.username">postgres</property>
         <property name="connection.password">root</property>
 
-        <property name="connection.pool_size">1</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
 
         <property name="dialect">
             org.hibernate.dialect.PostgreSQL94Dialect
