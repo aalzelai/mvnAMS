@@ -39,5 +39,8 @@
 			</tr>
 		</s:iterator>
 	</table>
+	<form action="map.action" method="get" >
+	<button type="submit">Map</button>
+	</form>
 </body>
 </html>

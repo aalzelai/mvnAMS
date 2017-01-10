@@ -24,6 +24,11 @@
             <result name="success">pages/PassengerIndex.jsp</result>
             <result name="error">index.jsp</result>
         </action>
+        <action name="map"
+            class="struts.action.MapAction">
+            <result name="success">pages/map.jsp</result>
+            <result name="error">index.jsp</result>
+        </action>
     </package>
 
     <package name="serveAll" namespace="" extends="struts-default">
