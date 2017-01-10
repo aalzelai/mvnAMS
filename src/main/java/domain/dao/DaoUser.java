@@ -17,6 +17,8 @@ import hibernate.util.*;
  *
  */
 public class DaoUser extends HibernateUtil {
+	
+	Session session;
 
     /**
      * Constructor.
@@ -25,15 +27,39 @@ public class DaoUser extends HibernateUtil {
     	super();
     }
 
-    public User loadUser(String username, String password){
-        Session session =
+    public Object loadUser(String username, String password){
+         session =
         		HibernateUtil.getSessionFactory().openSession();
-        User usuario = null;
+        Object usuario = null;
         try{
             Query query = session.createQuery("from User where username = :username and password = :password ");
             query.setParameter("username", username);
             query.setParameter("password", password);
             usuario = (User) query.getSingleResult();
+            
+            switch(((User) usuario).getUserType().getDescription()){
+            case "Passenger":
+            	query = session.createQuery("from UserPassenger where id_user = :idUser ");
+                query.setParameter("idUser", ((User) usuario).getIdUser());
+                usuario = (UserPassenger) query.getSingleResult();
+            	break;
+            	
+            case "Airline":
+            	query = session.createQuery("from UserAirline where id_user = :idUser ");
+                query.setParameter("idUser", ((User) usuario).getIdUser());
+                usuario = (UserAirline) query.getSingleResult();
+            	break;
+            	
+            case "Airport_Controller":
+            	query = session.createQuery("from UserAirportController where id_user = :idUser ");
+                query.setParameter("idUser", ((User) usuario).getIdUser());
+                usuario = (UserAirportController) query.getSingleResult();
+            	break;
+            	
+        	default:
+        		break;
+            
+            }
         } catch (HibernateException e) {
             e.printStackTrace();
         } catch (NoResultException e1){
@@ -41,6 +67,7 @@ public class DaoUser extends HibernateUtil {
         }
         return usuario;
     }
+    
 
     /*
      // For adding items in the Items table.

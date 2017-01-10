@@ -15,6 +15,9 @@
     <div class="collapse navbar-collapse" id="collapseNavbar">
       <ul class="nav navbar-nav">
         <li><a href="#">Home</a></li>
+        <s:if test="%{#session.user.userType.description.equals('Airline') || #session.user.userType.description.equals('Airport_Controller')}">
+			<li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
+		</s:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
      	<s:if test="%{#session.user==null}">
@@ -37,7 +40,7 @@
 												 <label><input type="checkbox"> Remember me</label>
 											</div>
 											<div class="form-group">
-												 <s:submit method="execute" cssClass="btn btn-primary btn-block" key="Sing in"/>
+												 <s:submit method="execute" cssClass="btn btn-primary btn-block" key="label.singin"/>
 											</div>
 									 </form>
 								</div>

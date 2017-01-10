@@ -40,6 +40,7 @@ public class DaoFlight {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
+        session.close();
         return items;
     }
 

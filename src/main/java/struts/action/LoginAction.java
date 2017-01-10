@@ -46,24 +46,25 @@ public class LoginAction extends ActionSupport {
         System.out.println("Username: "+user.getUsername());
         System.out.println("Password: "+user.getPassword());
         if(user.getUsername()!=null && user.getPassword()!=null){
-        	User loggedUser = new User();
+        	Object loggedUser = new User();
         	loggedUser = userDao.loadUser(user.getUsername(), user.getPassword());
         	
+        	Map<String, Object> session = ActionContext.getContext().getSession();
         	if(loggedUser != null){
-        		Map<String, Object> session = ActionContext.getContext().getSession();
         		session.put("user", loggedUser);
+        		session.put("loginError", false);
+        	}else{
+        		session.put("loginError", true);
         	}
         }
-        
-        return "success1";
-
+        return "success";
     }
     
     public String removeUser(){
     	Map<String, Object> session = ActionContext.getContext().getSession();
 		session.remove("user");
-    	
-		return "success1";
+				
+		return "success";
     }
 
 
