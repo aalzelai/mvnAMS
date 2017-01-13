@@ -7,6 +7,20 @@ $( document ).ready(function() {
 	$('#userTypeSel').change(function(){
 	    //Saves in a variable the wanted div
 	    var selector = '.sel' + $(this).val();
+	    
+	    if(selector == '.selAirline'){
+	    	$('#airlineSel').load('./load/selView.jsp?' + $.param({
+	    		type: $(this).val()
+	    	}), function(){
+	    		$('#selectAirline').selectpicker('render');
+	    	});
+	    }else if(selector == '.selControl'){
+	    	$('#airportSel').load('./load/selView.jsp?' + $.param({
+	    		type: $(this).val()
+	    	}), function(){
+	    		$('#selectAirport').selectpicker('render');
+	    	});
+	    }
 	
 	    //hide all elements
 	    $('.selHide').collapse('hide');

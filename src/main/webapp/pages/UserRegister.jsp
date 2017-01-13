@@ -41,13 +41,11 @@
 		<div class="form-group selHide selAirline">
 		<label>Airline: </label>
 			<div id="airlineSel">
-			
 			</div>
 		</div>
 		<div class="form-group selHide selControl">
 		<label>Airport: </label>
-			<div id="airlineSel">
-			
+			<div id="airportSel">
 			</div>
 		</div>
 		<input type="submit" class="btn btn-success" id="submit" name="method:register" value="Register" disabled>

@@ -1,8 +1,16 @@
 package struts.action;
 
+import java.util.List;
 import java.util.Map;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+import domain.dao.DaoAirline;
+import domain.dao.DaoAirport;
+import domain.dao.DaoUser;
+import domain.model.Airline;
+import domain.model.Airport;
 
 
 public class RegisterAction extends ActionSupport{
@@ -14,19 +22,97 @@ public class RegisterAction extends ActionSupport{
 	String airline;
 	String airport;
 	
+	List<Airline> airlineList;
+	List<Airport> airportList;
+	
+	DaoAirline daoAirline;
+	DaoAirport daoAirport;
+	DaoUser daoUser;
+	
 	public String execute() {
         return "success";
     }
 	
 	public String register(){
+		boolean inserted = false;
 		System.out.println(typeSelect);
 		System.out.println(username);
 		System.out.println(password);
-		System.out.println(telephone);
-		System.out.println(email);
-		System.out.println(airline);
-		System.out.println(airport);
+		
+		if(telephone != null){
+			System.out.println(telephone);
+		}
+		if(email != null){
+			System.out.println(email);
+		}
+		if(airline != null){
+			System.out.println(airline);
+		}
+		if(airport != null){
+			System.out.println(airport);
+		}
+		
+		daoUser = new DaoUser();
+		
+		switch(typeSelect){
+		case "Passenger":
+			inserted = registerPassenger();
+			break;
+		case "Airline":
+			inserted = registerAirlineUser();
+			break;
+		case "Control":
+			inserted = registerAirportController();
+			break;
+		default:
+			return "error";
+		}
+		
+		if(inserted){
+			System.out.println("Insertado bien");
+		}else{
+			System.out.println("Noooooo");
+		}
+		
 		return "success";
+	}
+	
+	public boolean registerPassenger(){
+		boolean result  = false;
+		
+		result = daoUser.registerPassenger(username, password, telephone, email);
+		
+		return result;		
+	}
+	
+	public boolean registerAirlineUser(){
+		boolean result  = false;
+		
+		result = daoUser.registerAirlineUser(username, password, Integer.valueOf(airline));
+		
+		return result;		
+	}
+	
+	public boolean registerAirportController(){
+		boolean result  = false;
+		
+		result = daoUser.registerAirportController(username, password, Integer.valueOf(airport));
+		
+		return result;		
+	}
+	
+	public List<Airline> getAirlines(){
+		daoAirline = new DaoAirline();
+		airlineList = daoAirline.loadAirlines();
+		
+		return airlineList;
+	}
+	
+	public List<Airport> getAirports(){
+		daoAirport = new DaoAirport();
+		airportList = daoAirport.loadAirports();
+		
+		return airportList;
 	}
 
 	public String getTypeSelect() {
@@ -83,6 +169,22 @@ public class RegisterAction extends ActionSupport{
 
 	public void setAirport(String airport) {
 		this.airport = airport;
+	}
+
+	public List<Airline> getAirlineList() {
+		return airlineList;
+	}
+
+	public void setAirlineList(List<Airline> airlineList) {
+		this.airlineList = airlineList;
+	}
+
+	public List<Airport> getAirportList() {
+		return airportList;
+	}
+
+	public void setAirportList(List<Airport> airportList) {
+		this.airportList = airportList;
 	}
 	
 	

@@ -68,6 +68,60 @@ public class DaoUser extends HibernateUtil {
         return usuario;
     }
     
+    public boolean registerPassenger(String username, String password, String telephone, String email){
+		session = HibernateUtil.getSessionFactory().openSession();
+		boolean result = false;
+		
+		try{
+			session.beginTransaction();
+			String sql = String.format("INSERT INTO user_passenger(username, password, id_user_type, telephone, email) VALUES ('%s', '%s', 1, '%s', '%s') ;", username, password, telephone, email);
+			session.createSQLQuery(sql).executeUpdate();//has no effect. Query doesn't execute.
+			session.getTransaction().commit();
+			result = true;
+		} catch(HibernateException e){
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+    	return result;
+    }
+    
+    public boolean registerAirlineUser(String username, String password, int idAirline){
+		session = HibernateUtil.getSessionFactory().openSession();
+		boolean result = false;
+		
+		try{
+			session.beginTransaction();
+			String sql = String.format("INSERT INTO user_airline(username, password, id_user_type, id_airline) VALUES ('%s', '%s', 2, %s) ;", username, password, idAirline);
+			session.createSQLQuery(sql).executeUpdate();//has no effect. Query doesn't execute.
+			session.getTransaction().commit();
+			result = true;
+		} catch(HibernateException e){
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+    	return result;    	
+    }
+    
+    public boolean registerAirportController(String username, String password, int idAirport){
+		session = HibernateUtil.getSessionFactory().openSession();
+		boolean result = false;
+		
+		try{
+			session.beginTransaction();
+			String sql = String.format("INSERT INTO user_airport_controller(username, password, id_user_type, id_airport) VALUES ('%s', '%s', 3, %s) ;", username, password, idAirport);
+			session.createSQLQuery(sql).executeUpdate();//has no effect. Query doesn't execute.
+			session.getTransaction().commit();
+			result = true;
+		} catch(HibernateException e){
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+    	return result;    	
+    }
+    
 
     /*
      // For adding items in the Items table.
@@ -98,25 +152,5 @@ public class DaoUser extends HibernateUtil {
      * select query and returns items as a
     // list.
 */
-    /**
-     * Function to load the list of the users.
-     * @return the list of the users.
-     */
-    public List<User> loadUserList() {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<User> items = null;
-        System.out.println("LLEGA 4");
-
-        try {
-            items = (List<User>) session.
-                    createQuery("from User ").getResultList();
-            System.out.println("LLEGA 5");
-
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        }
-        return items;
-    }
 }
