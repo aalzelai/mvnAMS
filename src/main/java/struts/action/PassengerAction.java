@@ -22,11 +22,6 @@ public class PassengerAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The user.
-     */
-    private Flight user;
-
-    /**
      * The list of the flights.
      */
     private List<Flight> flightList;
@@ -35,36 +30,48 @@ public class PassengerAction extends ActionSupport {
      * The flight dao.
      */
     private DaoFlight flightDao;
+    
+    private DaoUser daoUser;
 
     /**
      * The execute function.
      * @return the answer.
      */
     public String execute() {
+    	System.out.println("Hola1");
     	Map<String, Object> session = ActionContext.getContext().getSession();
+    	
+    	System.out.println("Hola2");
         flightDao = new DaoFlight();
-
+    	
+        System.out.println("Hola3");
         flightList = flightDao.loadFlights();
-        
+    	
+        System.out.println("Hola4");
         session.put("flightList", flightList);
+        
+    	System.out.println("Hola5");
 
         return "success";
     }
-
-    /**
-     * Getter of the user.
-     * @return the user.
-     */
-    public Flight getUser() {
-        return user;
+    
+    public String seeProfile(){
+    	return "success";
     }
-
-    /**
-     * Setter of the user.
-     * @param user is the user.
-     */
-    public void setUser(final Flight user) {
-        this.user = user;
+    
+    public String removeAndDeleteUser(){
+    	Map<String, Object> session = ActionContext.getContext().getSession();
+    	Object user = session.get("user");
+    	boolean removed = false;
+    	
+    	daoUser = new DaoUser();
+    	removed = daoUser.deleteUser(user);
+    	
+    	if(removed){
+    		session.remove("user");
+    	}
+    	
+    	return "success";
     }
 
     /**

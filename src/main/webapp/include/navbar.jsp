@@ -11,13 +11,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-plane"></span> Goreal planes</a>
+      <a class="navbar-brand" href="index.action"><span class="glyphicon glyphicon-plane"></span> Goreal planes</a>
     </div>
     <div class="collapse navbar-collapse" id="collapseNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
+        <li><a href="index">Home</a></li>
         <s:if test="%{#session.user.userType.description.equals('Airline') || #session.user.userType.description.equals('Airport_Controller')}">
-			<li><a href="map.action"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
+			<li><a href="index"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
 		</s:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -56,6 +56,7 @@
 	         </li>
 		</s:if>
 		<s:else>
+			<li><a href="seeProfile"><span class="glyphicon glyphicon-sunglasses"></span> Profile</a></li>
 			<li><a href="logout.action"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
 		</s:else>
       </ul>

@@ -18,8 +18,6 @@ import hibernate.util.*;
  */
 public class DaoUser extends HibernateUtil {
 	
-	Session session;
-
     /**
      * Constructor.
      */
@@ -28,7 +26,7 @@ public class DaoUser extends HibernateUtil {
     }
 
     public Object loadUser(String username, String password){
-         session =
+    	Session session =
         		HibernateUtil.getSessionFactory().openSession();
         Object usuario = null;
         try{
@@ -69,7 +67,7 @@ public class DaoUser extends HibernateUtil {
     }
     
     public boolean registerPassenger(String username, String password, String telephone, String email){
-		session = HibernateUtil.getSessionFactory().openSession();
+    	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;
 		
 		try{
@@ -87,7 +85,7 @@ public class DaoUser extends HibernateUtil {
     }
     
     public boolean registerAirlineUser(String username, String password, int idAirline){
-		session = HibernateUtil.getSessionFactory().openSession();
+    	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;
 		
 		try{
@@ -105,7 +103,7 @@ public class DaoUser extends HibernateUtil {
     }
     
     public boolean registerAirportController(String username, String password, int idAirport){
-		session = HibernateUtil.getSessionFactory().openSession();
+    	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;
 		
 		try{
@@ -120,6 +118,23 @@ public class DaoUser extends HibernateUtil {
 			session.close();
 		}
     	return result;    	
+    }
+    
+    public boolean deleteUser(Object user){
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+		boolean result = false;
+		
+		try{
+			session.beginTransaction();
+			session.delete(user);
+			session.getTransaction().commit();
+			result = true;
+		} catch(HibernateException e){
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+    	return result;   
     }
     
 
