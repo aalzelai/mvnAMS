@@ -15,7 +15,7 @@
   
 <div class="container-fluid" id="mainContainer">
 
-<s:if test="%{#session.loginError==true}">
+<s:if test="%{#request.loginError==true}">
 	<div class="alert alert-danger alert-dismissable fade in">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 	    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

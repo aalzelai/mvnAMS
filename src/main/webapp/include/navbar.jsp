@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="index.action"><span class="glyphicon glyphicon-plane"></span> Goreal planes</a>
+      <a class="navbar-brand" href="index"><span class="glyphicon glyphicon-plane"></span> Goreal planes</a>
     </div>
     <div class="collapse navbar-collapse" id="collapseNavbar">
       <ul class="nav navbar-nav">
@@ -37,9 +37,6 @@
 										    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 										    <input type="password" name="user.password" class="form-control" placeholder="Password" required>
 										  </div>
-											<div class="checkbox">
-												 <label><input type="checkbox"> Remember me</label>
-											</div>
 											<div class="form-group">
 												 <s:submit method="execute" cssClass="btn btn-primary btn-block" key="label.singin"/>
 											</div>

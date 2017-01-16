@@ -139,6 +139,23 @@ public class DaoUser extends HibernateUtil {
     	return result;   
     }
     
+    public boolean saveEditedUser(Object user){
+    	Session session = HibernateUtil.getSessionFactory().openSession();
+		boolean result = false;
+		
+		try{
+			session.beginTransaction();
+			session.update(user);
+			session.getTransaction().commit();
+			result = true;
+		} catch(HibernateException e){
+			session.getTransaction().rollback();
+		} finally {
+			session.close();
+		}
+    	return result;   
+    }
+    
 
     /*
      // For adding items in the Items table.

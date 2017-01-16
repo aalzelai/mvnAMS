@@ -51,6 +51,16 @@
             <result name="success">index.jsp</result>
             <result name="error">pages/Profile.jsp</result>
         </action>
+        <action name="editUser"
+            class="struts.action.PassengerAction" method="editUser">
+            <result name="success">pages/Profile.jsp</result>
+            <result name="error">index</result>
+        </action>
+        <action name="saveEditedUser"
+            class="struts.action.PassengerAction" method="saveEditedUser">
+            <result name="success">pages/Profile.jsp</result>
+            <result name="error">index</result>
+        </action>
     </package>
     <package name="serveAll" namespace="" extends="struts-default">
         <action name="*">

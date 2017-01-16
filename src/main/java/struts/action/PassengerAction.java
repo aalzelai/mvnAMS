@@ -3,6 +3,10 @@ package struts.action;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -32,26 +36,23 @@ public class PassengerAction extends ActionSupport {
     private DaoFlight flightDao;
     
     private DaoUser daoUser;
+    private String username;
+    private String password;
+    private String telephone;
+    private String email;
 
     /**
      * The execute function.
      * @return the answer.
      */
     public String execute() {
-    	System.out.println("Hola1");
     	Map<String, Object> session = ActionContext.getContext().getSession();
     	
-    	System.out.println("Hola2");
         flightDao = new DaoFlight();
-    	
-        System.out.println("Hola3");
         flightList = flightDao.loadFlights();
     	
-        System.out.println("Hola4");
         session.put("flightList", flightList);
         
-    	System.out.println("Hola5");
-
         return "success";
     }
     
@@ -69,6 +70,51 @@ public class PassengerAction extends ActionSupport {
     	
     	if(removed){
     		session.remove("user");
+    	}
+    	
+    	return "success";
+    }
+    
+    public String editUser(){    	
+    	HttpServletRequest request = ServletActionContext.getRequest();
+    	request.setAttribute("edit", true);
+    	
+    	return "success";
+    }
+    
+    public String saveEditedUser(){
+    	Map<String, Object> session = ActionContext.getContext().getSession();
+    	Object user = session.get("user");
+    	boolean edited = false;
+    	
+    	if(user instanceof UserPassenger){
+    		UserPassenger userPassenger = (UserPassenger) user;
+    		userPassenger.setUsername(username);
+    		userPassenger.setPassword(password);
+    		userPassenger.setTelephone(telephone);
+    		userPassenger.setEmail(email);
+    		System.out.println("Estoy en pass editar");
+    	}
+    	
+    	if(user instanceof UserAirline){
+    		UserAirline userAirline = (UserAirline) user;
+    		userAirline.setUsername(username);
+    		userAirline.setPassword(password);
+    		System.out.println("Estoy en airline editar");
+    	}
+    	
+    	if(user instanceof UserAirportController){
+    		UserAirportController userAirportController = (UserAirportController) user;
+    		userAirportController.setUsername(username);
+    		userAirportController.setPassword(password);
+    		System.out.println("Estoy en airport editar");
+    	}
+    	
+    	daoUser = new DaoUser();
+    	edited = daoUser.saveEditedUser(user);
+    	
+    	if(edited){
+    		session.replace("user", user);
     	}
     	
     	return "success";
@@ -106,4 +152,38 @@ public class PassengerAction extends ActionSupport {
         this.flightList = flightList;
     }
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+    
+    
 }
