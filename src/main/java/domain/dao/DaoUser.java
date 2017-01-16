@@ -62,6 +62,8 @@ public class DaoUser extends HibernateUtil {
             e.printStackTrace();
         } catch (NoResultException e1){
         	usuario = null;
+        } finally {
+        	session.close();
         }
         return usuario;
     }
