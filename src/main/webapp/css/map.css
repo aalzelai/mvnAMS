@@ -1,14 +1,22 @@
 @CHARSET "UTF-8";
-      #map {
-      width: 100%;
-      float: right;
-      box-sizing: border-box;
-      }
-      #aside {
-      width: 25%;
-      height: 100vh;
-      float: left;
-      box-sizing: border-box;
-      position: fixed;
-      visibility: hidden;
-      }
+
+body{
+	margin: 0px !important; 
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+	float: right;
+	box-sizing: border-box;
+	position: fixed;
+}
+
+#aside {
+	width: 25%;
+	height: 100vh;
+	float: left;
+	box-sizing: border-box;
+	position: fixed;
+	visibility: hidden;
+}

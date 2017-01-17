@@ -21,13 +21,18 @@
 	    });
   </script>
   <script type="text/JavaScript">
-  	setTimeout(function(){
-	   window.location.reload(1);
-		}, 5000);
+  	window.setInterval(function(){
+	  // window.location.reload(1);
+  		$('#dataDiv').load('./load/loadMap.jsp', function(){
+    		reloadMap();
+    	});
+		}, 300);
   </script>
 </head>
 <body>
    <div id="map" class="map"></div>
-   <input type="hidden" id="hiddenData" value="0"/>
+   <div id="dataDiv">
+   		<input type="hidden" id="hiddenData" value="0"/>
+   </div>
 </body>
 </html>
