@@ -31,6 +31,36 @@
             <result name="success">pages/map.jsp</result>
             <result name="error">index.jsp</result>
         </action>
+        <action name="goToRegister"
+            class="struts.action.RegisterAction" method="execute">
+            <result name="success">pages/UserRegister.jsp</result>
+            <result name="error">index.jsp</result>
+        </action>
+        <action name="register"
+            class="struts.action.RegisterAction" method="register">
+            <result name="success">index.jsp</result>
+            <result name="error">pages/UserRegister.jsp</result>
+        </action>
+        <action name="seeProfile"
+            class="struts.action.PassengerAction" method="seeProfile">
+            <result name="success">pages/Profile.jsp</result>
+            <result name="error">index.jsp</result>
+        </action>
+        <action name="deleteUser"
+            class="struts.action.PassengerAction" method="removeAndDeleteUser">
+            <result name="success">index.jsp</result>
+            <result name="error">pages/Profile.jsp</result>
+        </action>
+        <action name="editUser"
+            class="struts.action.PassengerAction" method="editUser">
+            <result name="success">pages/Profile.jsp</result>
+            <result name="error">index</result>
+        </action>
+        <action name="saveEditedUser"
+            class="struts.action.PassengerAction" method="saveEditedUser">
+            <result name="success">pages/Profile.jsp</result>
+            <result name="error">index</result>
+        </action>
     </package>
     <package name="serveAll" namespace="" extends="struts-default">
         <action name="*">

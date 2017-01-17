@@ -3,6 +3,10 @@ package struts.action;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -22,11 +26,6 @@ public class PassengerAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The user.
-     */
-    private Flight user;
-
-    /**
      * The list of the flights.
      */
     private List<Flight> flightList;
@@ -35,6 +34,12 @@ public class PassengerAction extends ActionSupport {
      * The flight dao.
      */
     private DaoFlight flightDao;
+    
+    private DaoUser daoUser;
+    private String username;
+    private String password;
+    private String telephone;
+    private String email;
 
     /**
      * The execute function.
@@ -42,29 +47,77 @@ public class PassengerAction extends ActionSupport {
      */
     public String execute() {
     	Map<String, Object> session = ActionContext.getContext().getSession();
+    	
         flightDao = new DaoFlight();
-
         flightList = flightDao.loadFlights();
-        
+    	
         session.put("flightList", flightList);
-
+        
         return "success";
     }
-
-    /**
-     * Getter of the user.
-     * @return the user.
-     */
-    public Flight getUser() {
-        return user;
+    
+    public String seeProfile(){
+    	return "success";
     }
-
-    /**
-     * Setter of the user.
-     * @param user is the user.
-     */
-    public void setUser(final Flight user) {
-        this.user = user;
+    
+    public String removeAndDeleteUser(){
+    	Map<String, Object> session = ActionContext.getContext().getSession();
+    	Object user = session.get("user");
+    	boolean removed = false;
+    	
+    	daoUser = new DaoUser();
+    	removed = daoUser.deleteUser(user);
+    	
+    	if(removed){
+    		session.remove("user");
+    	}
+    	
+    	return "success";
+    }
+    
+    public String editUser(){    	
+    	HttpServletRequest request = ServletActionContext.getRequest();
+    	request.setAttribute("edit", true);
+    	
+    	return "success";
+    }
+    
+    public String saveEditedUser(){
+    	Map<String, Object> session = ActionContext.getContext().getSession();
+    	Object user = session.get("user");
+    	boolean edited = false;
+    	
+    	if(user instanceof UserPassenger){
+    		UserPassenger userPassenger = (UserPassenger) user;
+    		userPassenger.setUsername(username);
+    		userPassenger.setPassword(password);
+    		userPassenger.setTelephone(telephone);
+    		userPassenger.setEmail(email);
+    		System.out.println("Estoy en pass editar");
+    	}
+    	
+    	if(user instanceof UserAirline){
+    		UserAirline userAirline = (UserAirline) user;
+    		userAirline.setUsername(username);
+    		userAirline.setPassword(password);
+    		System.out.println("Estoy en airline editar");
+    	}
+    	
+    	if(user instanceof UserAirportController){
+    		UserAirportController userAirportController = (UserAirportController) user;
+    		userAirportController.setUsername(username);
+    		userAirportController.setPassword(password);
+    		System.out.println("Estoy en airport editar");
+    	}
+    	
+    	daoUser = new DaoUser();
+    	edited = daoUser.saveEditedUser(user);
+    	
+    	if(edited){
+    		session.replace("user", user);
+    	}
+    	
+    	return "success";
     }
 
     /**
@@ -99,4 +152,38 @@ public class PassengerAction extends ActionSupport {
         this.flightList = flightList;
     }
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+    
+    
 }

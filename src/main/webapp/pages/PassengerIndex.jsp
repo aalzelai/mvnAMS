@@ -6,11 +6,8 @@
 <head>
 <title>Goreal Planes</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/index.css">
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<s:include value="/include/bootstrap.jsp"></s:include>
+<link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
 
@@ -18,7 +15,7 @@
   
 <div class="container-fluid" id="mainContainer">
 
-<s:if test="%{#session.loginError==true}">
+<s:if test="%{#request.loginError==true}">
 	<div class="alert alert-danger alert-dismissable fade in">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 	    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

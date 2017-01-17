@@ -2,6 +2,10 @@ package struts.action;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -50,11 +54,13 @@ public class LoginAction extends ActionSupport {
         	loggedUser = userDao.loadUser(user.getUsername(), user.getPassword());
         	
         	Map<String, Object> session = ActionContext.getContext().getSession();
+        	HttpServletRequest request = ServletActionContext.getRequest();
+        	
         	if(loggedUser != null){
         		session.put("user", loggedUser);
-        		session.put("loginError", false);
+        		request.setAttribute("loginError", false);
         	}else{
-        		session.put("loginError", true);
+        		request.setAttribute("loginError", true);
         	}
         }
         return "success";

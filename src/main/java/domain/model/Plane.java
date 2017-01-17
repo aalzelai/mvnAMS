@@ -31,7 +31,7 @@ public class Plane implements Serializable {
 	private Integer terminal;
 
 	//bi-directional many-to-one association to Flight
-	@OneToMany(mappedBy="plane")
+	@OneToMany(mappedBy="plane", fetch=FetchType.EAGER)
 	private List<Flight> flights;
 
 	//bi-directional many-to-one association to Airline
