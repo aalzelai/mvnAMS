@@ -6,11 +6,8 @@
 <head>
 <title>Goreal Planes</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/index.css">
-<script src="js/jquery-3.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<s:include value="/include/bootstrap.jsp"></s:include>
+<link rel="stylesheet" href="css/navbar.css">
 </head>
 <body>
 
@@ -18,7 +15,7 @@
   
 <div class="container-fluid" id="mainContainer">
 
-<s:if test="%{#session.loginError==true}">
+<s:if test="%{#request.loginError==true}">
 	<div class="alert alert-danger alert-dismissable fade in">
 		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
 	    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -44,40 +41,60 @@
 		</thead>
 		<tbody>
 			<s:iterator var="flight" value="#session.flightList">
-				<s:if test="#session.user.userType.description.equals('Passenger')">
-					<s:set var="highlight" value = "%{false}" />
-					<s:iterator var="ticket" value="#session.user.tickets">
-						<s:if test="#ticket.flight.idFlight == #flight.idFlight">
-							<s:set var="highlight" value = "%{true}"/>
+				<s:if test="#session.user.userType.description.equals('Airline')">
+					<s:if test="#session.user.airline.name == #flight.plane.airline.name">
+						<tr>
+							<td><s:property value="#flight.idFlight" /></td>
+							<td><s:property value="#flight.plane.planeType.description" /></td>
+							<td><s:property value="#flight.flightStatus.description" /></td>
+							<td><s:property value="#flight.plane.airline.name" /></td>
+							<td><s:property value="#flight.timeFrom" /></td>
+							<td><s:property value="#flight.airport1.name" /></td>
+							<td><s:property value="#flight.timeTo" /></td>
+							<td><s:property value="#flight.airport2.name" /></td>
+							<td><s:property value="#flight.delay" /></td>
+							<td><s:property value="#flight.gateNumber" /></td>
+							<td><s:property value="#flight.baggageNumber" /></td>
+						</tr>
+					</s:if>
+				</s:if>
+				<s:else>
+					<s:if test="#session.user.userType.description.equals('Passenger')">
+						<s:set var="highlight" value = "%{false}" />
+						<s:iterator var="ticket" value="#session.user.tickets">
+							<s:if test="#ticket.flight.idFlight == #flight.idFlight">
+								<s:set var="highlight" value = "%{true}"/>
+							</s:if>
+						</s:iterator>
+						<s:if test="#highlight == true">
+							<tr class="info">
 						</s:if>
-					</s:iterator>
-					<s:if test="#highlight == true">
-						<tr class="info">
+						<s:else>
+							<tr>
+						</s:else>
 					</s:if>
 					<s:else>
 						<tr>
 					</s:else>
-				</s:if>
-				<s:else>
-					<tr>
+						<td><s:property value="#flight.idFlight" /></td>
+						<td><s:property value="#flight.plane.planeType.description" /></td>
+						<td><s:property value="#flight.flightStatus.description" /></td>
+						<td><s:property value="#flight.plane.airline.name" /></td>
+						<td><s:property value="#flight.timeFrom" /></td>
+						<td><s:property value="#flight.airport1.name" /></td>
+						<td><s:property value="#flight.timeTo" /></td>
+						<td><s:property value="#flight.airport2.name" /></td>
+						<td><s:property value="#flight.delay" /></td>
+						<td><s:property value="#flight.gateNumber" /></td>
+						<td><s:property value="#flight.baggageNumber" /></td>
+					</tr>
 				</s:else>
-					<td><s:property value="#flight.idFlight" /></td>
-					<td><s:property value="#flight.plane.planeType.description" /></td>
-					<td><s:property value="#flight.flightStatus.description" /></td>
-					<td><s:property value="#flight.plane.airline.name" /></td>
-					<td><s:property value="#flight.timeFrom" /></td>
-					<td><s:property value="#flight.airport1.name" /></td>
-					<td><s:property value="#flight.timeTo" /></td>
-					<td><s:property value="#flight.airport2.name" /></td>
-					<td><s:property value="#flight.delay" /></td>
-					<td><s:property value="#flight.gateNumber" /></td>
-					<td><s:property value="#flight.baggageNumber" /></td>
-				</tr>
+				
 			</s:iterator>
 		</tbody>
 		
 	</table>
-<s:if test="#session.user.userType.description.equals('Passenger')">
+	<s:if test="#session.user.userType.description.equals('Passenger')">
 		<p>Pasajero</p>
 	</s:if>
 	<s:if test="#session.user.userType.description.equals('Airline')">
@@ -86,12 +103,11 @@
 	<s:if test="#session.user.userType.description.equals('Airport_Controller')">
 		<p>Airport_controller</p>
 	</s:if>
-	
-</div>	
-	<form action="map.action" method="get" >
-		<button type="submit">Map</button>
-	</form>
 	<form action="PassengerController.action" method="get" >
 		<button type="submit">Passenger Controller</button>
-	</form></body>
+	</form>
+	
+</div>	
+
+</body>
 </html>
