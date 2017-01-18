@@ -41,35 +41,55 @@
 		</thead>
 		<tbody>
 			<s:iterator var="flight" value="#session.flightList">
-				<s:if test="#session.user.userType.description.equals('Passenger')">
-					<s:set var="highlight" value = "%{false}" />
-					<s:iterator var="ticket" value="#session.user.tickets">
-						<s:if test="#ticket.flight.idFlight == #flight.idFlight">
-							<s:set var="highlight" value = "%{true}"/>
+				<s:if test="#session.user.userType.description.equals('Airline')">
+					<s:if test="#session.user.airline.name == #flight.plane.airline.name">
+						<tr>
+							<td><s:property value="#flight.idFlight" /></td>
+							<td><s:property value="#flight.plane.planeType.description" /></td>
+							<td><s:property value="#flight.flightStatus.description" /></td>
+							<td><s:property value="#flight.plane.airline.name" /></td>
+							<td><s:property value="#flight.timeFrom" /></td>
+							<td><s:property value="#flight.airport1.name" /></td>
+							<td><s:property value="#flight.timeTo" /></td>
+							<td><s:property value="#flight.airport2.name" /></td>
+							<td><s:property value="#flight.delay" /></td>
+							<td><s:property value="#flight.gateNumber" /></td>
+							<td><s:property value="#flight.baggageNumber" /></td>
+						</tr>
+					</s:if>
+				</s:if>
+				<s:else>
+					<s:if test="#session.user.userType.description.equals('Passenger')">
+						<s:set var="highlight" value = "%{false}" />
+						<s:iterator var="ticket" value="#session.user.tickets">
+							<s:if test="#ticket.flight.idFlight == #flight.idFlight">
+								<s:set var="highlight" value = "%{true}"/>
+							</s:if>
+						</s:iterator>
+						<s:if test="#highlight == true">
+							<tr class="info">
 						</s:if>
-					</s:iterator>
-					<s:if test="#highlight == true">
-						<tr class="info">
+						<s:else>
+							<tr>
+						</s:else>
 					</s:if>
 					<s:else>
 						<tr>
 					</s:else>
-				</s:if>
-				<s:else>
-					<tr>
+						<td><s:property value="#flight.idFlight" /></td>
+						<td><s:property value="#flight.plane.planeType.description" /></td>
+						<td><s:property value="#flight.flightStatus.description" /></td>
+						<td><s:property value="#flight.plane.airline.name" /></td>
+						<td><s:property value="#flight.timeFrom" /></td>
+						<td><s:property value="#flight.airport1.name" /></td>
+						<td><s:property value="#flight.timeTo" /></td>
+						<td><s:property value="#flight.airport2.name" /></td>
+						<td><s:property value="#flight.delay" /></td>
+						<td><s:property value="#flight.gateNumber" /></td>
+						<td><s:property value="#flight.baggageNumber" /></td>
+					</tr>
 				</s:else>
-					<td><s:property value="#flight.idFlight" /></td>
-					<td><s:property value="#flight.plane.planeType.description" /></td>
-					<td><s:property value="#flight.flightStatus.description" /></td>
-					<td><s:property value="#flight.plane.airline.name" /></td>
-					<td><s:property value="#flight.timeFrom" /></td>
-					<td><s:property value="#flight.airport1.name" /></td>
-					<td><s:property value="#flight.timeTo" /></td>
-					<td><s:property value="#flight.airport2.name" /></td>
-					<td><s:property value="#flight.delay" /></td>
-					<td><s:property value="#flight.gateNumber" /></td>
-					<td><s:property value="#flight.baggageNumber" /></td>
-				</tr>
+				
 			</s:iterator>
 		</tbody>
 		
