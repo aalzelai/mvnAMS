@@ -47,6 +47,7 @@ public class MapAction  extends ActionSupport{
         	data = data + ""+f.getIdFlight()+"$"+f.getAirport1().getPosX()+"/"+f.getAirport1().getPosY()+"$"+f.getPlane().getPosX()+"/"+f.getPlane().getPosY()+"$"+f.getPlane().getAngle()+"%";
         }
         data = data + "'";
+        System.out.println(data);
         return "success";
 
     }

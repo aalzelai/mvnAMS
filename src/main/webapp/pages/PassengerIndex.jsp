@@ -90,5 +90,8 @@
 </div>	
 	<form action="map.action" method="get" >
 		<button type="submit">Map</button>
+	</form>
+	<form action="PassengerController.action" method="get" >
+		<button type="submit">Passenger Controller</button>
 	</form></body>
 </html>

@@ -31,6 +31,11 @@
             <result name="success">pages/map.jsp</result>
             <result name="error">index.jsp</result>
         </action>
+        <action name="PassengerController"
+            class="struts.action.PassengerControllerAction">
+            <result name="success">pages/AirlineGraphics.jsp</result>
+            <result name="error">index.jsp</result>
+        </action>
     </package>
     <package name="serveAll" namespace="" extends="struts-default">
         <action name="*">
