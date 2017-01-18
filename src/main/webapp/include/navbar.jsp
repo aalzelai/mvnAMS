@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -10,13 +11,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-plane"></span> Goreal planes</a>
+      <a class="navbar-brand" href="index"><span class="glyphicon glyphicon-plane"></span> Goreal planes</a>
     </div>
     <div class="collapse navbar-collapse" id="collapseNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
+        <li><a href="index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
         <s:if test="%{#session.user.userType.description.equals('Airline') || #session.user.userType.description.equals('Airport_Controller')}">
-			<li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
+			<li><a href="map"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
 		</s:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -30,15 +31,12 @@
 									 <form action="login.action" method="post" >
 										 <div class="form-group input-group">
 										    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										    <s:textfield name="user.username" cssClass="form-control" placeholder="%{getText('label.username')}" required="required"/>
+										    <input type="text" name="user.username" class="form-control" placeholder="Username" required>
 										  </div>
 										  <div class="form-group input-group">
 										    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-										    <s:password name="user.password" cssClass="form-control" placeholder="%{getText('label.password')}" required="required"/>
+										    <input type="password" name="user.password" class="form-control" placeholder="Password" required>
 										  </div>
-											<div class="checkbox">
-												 <label><input type="checkbox"> Remember me</label>
-											</div>
 											<div class="form-group">
 												 <s:submit method="execute" cssClass="btn btn-primary btn-block" key="label.singin"/>
 											</div>
@@ -47,7 +45,7 @@
 						 </div>
 						 <div class="row">
 						  	<div class="bottomText text-center">
-									No account? <a href="#"><b>Register here</b></a>
+									No account? <a href="goToRegister.action"><b>Register here</b></a>
 							</div>
 						 </div>
 	            	</li>
@@ -55,6 +53,7 @@
 	         </li>
 		</s:if>
 		<s:else>
+			<li><a href="seeProfile"><span class="glyphicon glyphicon-sunglasses"></span> Profile</a></li>
 			<li><a href="logout.action"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
 		</s:else>
       </ul>

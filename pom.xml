@@ -49,8 +49,17 @@
     <groupId>org.javassist</groupId>
     <artifactId>javassist</artifactId>
     <version>3.21.0-GA</version>
-</dependency>
-  </dependencies>
+</dependency><dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>3.0.1</version>
+    <scope>provided</scope>
+</dependency><dependency>
+  <groupId>org.easymock</groupId>
+  <artifactId>easymock</artifactId>
+  <version>3.4</version>
+  <scope>test</scope>
+</dependency>  </dependencies>
   <build>
     <finalName>mvnAMS</finalName>
     <pluginManagement>
