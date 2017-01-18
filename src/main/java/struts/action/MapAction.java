@@ -44,7 +44,7 @@ public class MapAction  extends ActionSupport{
         
         for(int i = 0 ; i < flightList.size(); i++){
         	f = flightList.get(i);
-        	data = data + ""+f.getIdFlight()+"$"+f.getAirport1().getPosX()+"/"+f.getAirport1().getPosY()+"$"+f.getPlane().getPosX()+"/"+f.getPlane().getPosY()+"$"+f.getPlane().getAngle()+"%";
+        	data = data + ""+f.getPlane().getAirline().getIdAirline() + "$"+f.getPlane().getPosX()+"/"+f.getPlane().getPosY()+"$"+f.getPlane().getAngle()+"%";
         }
         data = data + "'";
         return "success";
@@ -60,9 +60,8 @@ public class MapAction  extends ActionSupport{
         
         for(int i = 0 ; i < flightList.size(); i++){
         	f = flightList.get(i);
-        	data = data + ""+f.getIdFlight()+"$"+f.getAirport1().getPosX()+"/"+f.getAirport1().getPosY()+"$"+f.getPlane().getPosX()+"/"+f.getPlane().getPosY()+"$"+f.getPlane().getAngle()+"%";
+        	data = data + ""+f.getPlane().getAirline().getIdAirline() + "$"+f.getPlane().getPosX()+"/"+f.getPlane().getPosY()+"$"+f.getPlane().getAngle()+"%";
         }
-        data = data + "";
     	
     	return data;
     }

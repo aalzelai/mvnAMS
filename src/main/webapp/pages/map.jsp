@@ -13,25 +13,29 @@
     <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
     <script src="https://openlayers.org/en/v3.20.1/build/ol.js"></script>
 <title>Current Flight</title>
-<script type="text/JavaScript">
+
+</head>
+<body>
+   <s:if test="#session.user.userType.description.equals('Airline')">
+		<s:set var="sessionType" value = "#session.user.airline.idAirline" />
+		</s:if>
+		<script type="text/JavaScript">
 	$(document).ready(function() {
 	    var flights = <s:property value="data"/>;
 	    document.getElementById('hiddenData').value = flights;
-	    createMap();
+	    createMap(<s:property value="#sessionType"/>);
 	    });
   </script>
   <script type="text/JavaScript">
   	window.setInterval(function(){
-	  // window.location.reload(1);
   		$('#dataDiv').load('./load/loadMap.jsp', function(){
-    		reloadMap();
+    		reloadMap(<s:property value="#sessionType"/>);
     	});
 		}, 300);
   </script>
-</head>
-<body>
    <div id="map" class="map"></div>
    <div id="dataDiv">
+
    		<input type="hidden" id="hiddenData" value="0"/>
    </div>
 </body>
