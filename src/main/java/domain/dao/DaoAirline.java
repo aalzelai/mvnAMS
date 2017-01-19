@@ -35,7 +35,7 @@ public class DaoAirline {
                                    createQuery("from Airline ").getResultList();
 
         } catch (HibernateException e) {
-            e.printStackTrace();
+        	java.util.logging.Logger.getLogger("Test").log(null, "Hibernate error", e);
             session.getTransaction().rollback();
         }
         session.close();

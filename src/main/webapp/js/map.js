@@ -28,7 +28,6 @@
     	
     	for(var j = 0; j < flightsData.length - 1; j++){
     		var flightFragments = flightsData[j].split("$"); //Separate each part from the flight (id, coord1, coord2)
-    		console.log(flightFragments[1]);
     		var coordenatesPlane = flightFragments[1].split("/");
     		var angle = parseInt(flightFragments[2]);
     		if(sessionType == flightFragments[0]){
@@ -78,7 +77,6 @@
 		
     	for(var j = 0; j < flightsData.length - 1; j++){
     		var flightFragments = flightsData[j].split("$"); //Separate each part from the flight (id, coord1, coord2)
-    		console.log(flightFragments[1]);
     		var coordenatesPlane = flightFragments[1].split("/");
     		var angle = parseInt(flightFragments[2]);
     		if(sessionType == flightFragments[0]){
