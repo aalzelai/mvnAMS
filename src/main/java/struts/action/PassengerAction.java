@@ -35,10 +35,19 @@ public class PassengerAction extends ActionSupport {
      */
     private DaoFlight flightDao;
     
+    /** The dao user. */
     private DaoUser daoUser;
+    
+    /** The username. */
     private String username;
+    
+    /** The password. */
     private String password;
+    
+    /** The telephone. */
     private String telephone;
+    
+    /** The email. */
     private String email;
 
     /**
@@ -56,10 +65,20 @@ public class PassengerAction extends ActionSupport {
         return "success";
     }
     
+    /**
+     * See profile.
+     *
+     * @return the string
+     */
     public String seeProfile(){
     	return "success";
     }
     
+    /**
+     * Removes the and delete user.
+     *
+     * @return the string
+     */
     public String removeAndDeleteUser(){
     	Map<String, Object> session = ActionContext.getContext().getSession();
     	Object user = session.get("user");
@@ -75,6 +94,11 @@ public class PassengerAction extends ActionSupport {
     	return "success";
     }
     
+    /**
+     * Edits the user.
+     *
+     * @return the string
+     */
     public String editUser(){    	
     	HttpServletRequest request = ServletActionContext.getRequest();
     	request.setAttribute("edit", true);
@@ -82,6 +106,11 @@ public class PassengerAction extends ActionSupport {
     	return "success";
     }
     
+    /**
+     * Save edited user.
+     *
+     * @return the string
+     */
     public String saveEditedUser(){
     	Map<String, Object> session = ActionContext.getContext().getSession();
     	Object user = session.get("user");
@@ -152,34 +181,74 @@ public class PassengerAction extends ActionSupport {
         this.flightList = flightList;
     }
 
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Sets the username.
+	 *
+	 * @param username the new username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * Gets the telephone.
+	 *
+	 * @return the telephone
+	 */
 	public String getTelephone() {
 		return telephone;
 	}
 
+	/**
+	 * Sets the telephone.
+	 *
+	 * @param telephone the new telephone
+	 */
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets the email.
+	 *
+	 * @param email the new email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}

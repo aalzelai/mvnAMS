@@ -13,26 +13,59 @@ import domain.model.Airline;
 import domain.model.Airport;
 
 
+/**
+ * The Class RegisterAction.
+ */
 public class RegisterAction extends ActionSupport{
+	
+	/** The type select. */
 	String typeSelect;
+	
+	/** The username. */
 	String username;
+	
+	/** The password. */
 	String password;
+	
+	/** The telephone. */
 	String telephone;
+	
+	/** The email. */
 	String email;
+	
+	/** The airline. */
 	String airline;
+	
+	/** The airport. */
 	String airport;
 	
+	/** The airline list. */
 	List<Airline> airlineList;
+	
+	/** The airport list. */
 	List<Airport> airportList;
 	
+	/** The dao airline. */
 	DaoAirline daoAirline;
+	
+	/** The dao airport. */
 	DaoAirport daoAirport;
+	
+	/** The dao user. */
 	DaoUser daoUser;
 	
+	/* (non-Javadoc)
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
 	public String execute() {
         return "success";
     }
 	
+	/**
+	 * Register.
+	 *
+	 * @return the string
+	 */
 	public String register(){
 		boolean inserted = false;
 		System.out.println(typeSelect);
@@ -77,6 +110,11 @@ public class RegisterAction extends ActionSupport{
 		return "success";
 	}
 	
+	/**
+	 * Register passenger.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean registerPassenger(){
 		boolean result  = false;
 		
@@ -85,6 +123,11 @@ public class RegisterAction extends ActionSupport{
 		return result;		
 	}
 	
+	/**
+	 * Register airline user.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean registerAirlineUser(){
 		boolean result  = false;
 		
@@ -93,6 +136,11 @@ public class RegisterAction extends ActionSupport{
 		return result;		
 	}
 	
+	/**
+	 * Register airport controller.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean registerAirportController(){
 		boolean result  = false;
 		
@@ -101,6 +149,11 @@ public class RegisterAction extends ActionSupport{
 		return result;		
 	}
 	
+	/**
+	 * Gets the airlines.
+	 *
+	 * @return the airlines
+	 */
 	public List<Airline> getAirlines(){
 		daoAirline = new DaoAirline();
 		airlineList = daoAirline.loadAirlines();
@@ -108,6 +161,11 @@ public class RegisterAction extends ActionSupport{
 		return airlineList;
 	}
 	
+	/**
+	 * Gets the airports.
+	 *
+	 * @return the airports
+	 */
 	public List<Airport> getAirports(){
 		daoAirport = new DaoAirport();
 		airportList = daoAirport.loadAirports();
@@ -115,74 +173,164 @@ public class RegisterAction extends ActionSupport{
 		return airportList;
 	}
 
+	/**
+	 * Gets the type select.
+	 *
+	 * @return the type select
+	 */
 	public String getTypeSelect() {
 		return typeSelect;
 	}
 
+	/**
+	 * Sets the type select.
+	 *
+	 * @param typeSelect the new type select
+	 */
 	public void setTypeSelect(String typeSelect) {
 		this.typeSelect = typeSelect;
 	}
 
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Sets the username.
+	 *
+	 * @param username the new username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * Gets the telephone.
+	 *
+	 * @return the telephone
+	 */
 	public String getTelephone() {
 		return telephone;
 	}
 
+	/**
+	 * Sets the telephone.
+	 *
+	 * @param telephone the new telephone
+	 */
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
+	/**
+	 * Gets the email.
+	 *
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets the email.
+	 *
+	 * @param email the new email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Gets the airline.
+	 *
+	 * @return the airline
+	 */
 	public String getAirline() {
 		return airline;
 	}
 
+	/**
+	 * Sets the airline.
+	 *
+	 * @param airline the new airline
+	 */
 	public void setAirline(String airline) {
 		this.airline = airline;
 	}
 
+	/**
+	 * Gets the airport.
+	 *
+	 * @return the airport
+	 */
 	public String getAirport() {
 		return airport;
 	}
 
+	/**
+	 * Sets the airport.
+	 *
+	 * @param airport the new airport
+	 */
 	public void setAirport(String airport) {
 		this.airport = airport;
 	}
 
+	/**
+	 * Gets the airline list.
+	 *
+	 * @return the airline list
+	 */
 	public List<Airline> getAirlineList() {
 		return airlineList;
 	}
 
+	/**
+	 * Sets the airline list.
+	 *
+	 * @param airlineList the new airline list
+	 */
 	public void setAirlineList(List<Airline> airlineList) {
 		this.airlineList = airlineList;
 	}
 
+	/**
+	 * Gets the airport list.
+	 *
+	 * @return the airport list
+	 */
 	public List<Airport> getAirportList() {
 		return airportList;
 	}
 
+	/**
+	 * Sets the airport list.
+	 *
+	 * @param airportList the new airport list
+	 */
 	public void setAirportList(List<Airport> airportList) {
 		this.airportList = airportList;
 	}

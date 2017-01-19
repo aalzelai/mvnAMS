@@ -8,11 +8,12 @@ import com.opensymphony.xwork2.ActionSupport;
 import domain.dao.DaoFlight;
 import domain.model.Flight;
 
+/**
+ * The Class MapAction.
+ */
 public class MapAction  extends ActionSupport{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -51,6 +52,11 @@ public class MapAction  extends ActionSupport{
 
     }
     
+    /**
+     * Gets the flight data.
+     *
+     * @return the flight data
+     */
     public String getFlightData(){
     	flightDao = new DaoFlight();
     	data = "";
@@ -66,18 +72,38 @@ public class MapAction  extends ActionSupport{
     	return data;
     }
 
+	/**
+	 * Gets the flight list.
+	 *
+	 * @return the flight list
+	 */
 	public List<Flight> getFlightList() {
 		return flightList;
 	}
 
+	/**
+	 * Sets the flight list.
+	 *
+	 * @param flightList the new flight list
+	 */
 	public void setFlightList(List<Flight> flightList) {
 		this.flightList = flightList;
 	}
 
+	/**
+	 * Gets the data.
+	 *
+	 * @return the data
+	 */
 	public String getData() {
 		return data;
 	}
 
+	/**
+	 * Sets the data.
+	 *
+	 * @param data the new data
+	 */
 	public void setData(String data) {
 		this.data = data;
 	}

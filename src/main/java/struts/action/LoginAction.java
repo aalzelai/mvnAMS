@@ -66,6 +66,11 @@ public class LoginAction extends ActionSupport {
         return "success";
     }
     
+    /**
+     * Removes the user.
+     *
+     * @return the string
+     */
     public String removeUser(){
     	Map<String, Object> session = ActionContext.getContext().getSession();
 		session.remove("user");

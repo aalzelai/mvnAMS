@@ -8,12 +8,23 @@ import org.hibernate.Session;
 import domain.model.Airline;
 import hibernate.util.HibernateUtil;
 
+/**
+ * The Class DaoAirline.
+ */
 public class DaoAirline {
 	
+	/**
+	 * Instantiates a new dao airline.
+	 */
 	public DaoAirline() {
 		
 	}
 	
+	/**
+	 * Load airlines.
+	 *
+	 * @return the list
+	 */
 	public List<Airline> loadAirlines() {
 
         Session session = HibernateUtil.getSessionFactory().openSession();

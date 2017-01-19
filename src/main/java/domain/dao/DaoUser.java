@@ -25,6 +25,13 @@ public class DaoUser extends HibernateUtil {
     	super();
     }
 
+    /**
+     * Load user.
+     *
+     * @param username the username
+     * @param password the password
+     * @return the object
+     */
     public Object loadUser(String username, String password){
     	Session session =
         		HibernateUtil.getSessionFactory().openSession();
@@ -68,6 +75,15 @@ public class DaoUser extends HibernateUtil {
         return usuario;
     }
     
+    /**
+     * Register passenger.
+     *
+     * @param username the username
+     * @param password the password
+     * @param telephone the telephone
+     * @param email the email
+     * @return true, if successful
+     */
     public boolean registerPassenger(String username, String password, String telephone, String email){
     	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;
@@ -86,6 +102,14 @@ public class DaoUser extends HibernateUtil {
     	return result;
     }
     
+    /**
+     * Register airline user.
+     *
+     * @param username the username
+     * @param password the password
+     * @param idAirline the id airline
+     * @return true, if successful
+     */
     public boolean registerAirlineUser(String username, String password, int idAirline){
     	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;
@@ -104,6 +128,14 @@ public class DaoUser extends HibernateUtil {
     	return result;    	
     }
     
+    /**
+     * Register airport controller.
+     *
+     * @param username the username
+     * @param password the password
+     * @param idAirport the id airport
+     * @return true, if successful
+     */
     public boolean registerAirportController(String username, String password, int idAirport){
     	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;
@@ -122,6 +154,12 @@ public class DaoUser extends HibernateUtil {
     	return result;    	
     }
     
+    /**
+     * Delete user.
+     *
+     * @param user the user
+     * @return true, if successful
+     */
     public boolean deleteUser(Object user){
     	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;
@@ -139,6 +177,12 @@ public class DaoUser extends HibernateUtil {
     	return result;   
     }
     
+    /**
+     * Save edited user.
+     *
+     * @param user the user
+     * @return true, if successful
+     */
     public boolean saveEditedUser(Object user){
     	Session session = HibernateUtil.getSessionFactory().openSession();
 		boolean result = false;

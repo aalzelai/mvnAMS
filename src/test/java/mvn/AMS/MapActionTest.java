@@ -14,20 +14,31 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Class MapActionTest.
+ */
 public class MapActionTest extends EasyMockSupport{
 
 
+	/** The action. */
 	private MapAction action = new MapAction();
+	
+	/** The dao. */
 	private DaoFlight dao = new DaoFlight();
 	
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
     public void setUp() throws Exception {
 		
 		
     }
+    
     /**
      * Test if the login is ok.
-     * @throws TestingEngineResponseException is the throw
      */
     @Test
     public void testActionMapOK(){
