@@ -1,11 +1,14 @@
 package struts.action;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import com.opensymphony.xwork2.ActionSupport;
-
-import domain.dao.DaoFlight;
-import domain.model.Flight;
 
 public class PassengerControllerAction extends ActionSupport{
 
@@ -13,36 +16,7 @@ public class PassengerControllerAction extends ActionSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	/**
-     * The flight dao.
-     */
-    private DaoFlight flightDao;
-    
-    public DaoFlight getFlightDao() {
-		return flightDao;
-	}
-
-
-	public void setFlightDao(DaoFlight flightDao) {
-		this.flightDao = flightDao;
-	}
-
-
-	public List<Flight> getFlightList() {
-		return flightList;
-	}
-
-
-	public void setFlightList(List<Flight> flightList) {
-		this.flightList = flightList;
-	}
-
-
-	/**
-     * The list of the flights.
-     */
-    private List<Flight> flightList;
+	private static final char DEFAULT_SEPARATOR = ',';
     
     
 	/**
@@ -51,16 +25,71 @@ public class PassengerControllerAction extends ActionSupport{
      */
     public String execute() {
 
+    	try {
+			generateRandomCsv();
+			return "success";
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "error";
+		}
+    }
 
-       // flightDao = new DaoFlight();
-        //Flight f;
 
-        //setFlightList(flightDao.loadFlights());
-        
-       // for(int i = 0 ; i < flightList.size(); i++){
-        	
-        //}
-        return "success";
+	private void generateRandomCsv() throws IOException {
+		String csvFile = new File(System.getProperty("user.dir")).getParentFile().getParent() + "\\src\\main\\webapp\\csv\\pieChart.csv";
+        FileWriter writer = new FileWriter(csvFile);
+        Random random = new Random();
+
+        writeLine(writer, Arrays.asList("label", "count"), ' ', ' ');
+
+        //custom separator + quote
+        writeLine(writer, Arrays.asList("Flights earlier", String.valueOf(random.nextInt(2000))), ' ', '"');
+
+        //custom separator + quote
+        writeLine(writer, Arrays.asList("Flights in time", String.valueOf(random.nextInt(2000))), ' ', '"');
+
+        //double-quotes
+        writeLine(writer, Arrays.asList("Flights later", String.valueOf(random.nextInt(2000))), ' ', '"');
+
+
+        writer.flush();
+        writer.close();
+	}
+	
+	public static void writeLine(Writer w, List<String> values, char separators, char customQuote) throws IOException {
+
+        boolean first = true;
+
+        //default customQuote is empty
+
+        if (separators == ' ') {
+            separators = DEFAULT_SEPARATOR;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String value : values) {
+            if (!first) {
+                sb.append(separators);
+            }
+            if (customQuote == ' ') {
+                sb.append(followCVSformat(value));
+            } else {
+                sb.append(customQuote).append(followCVSformat(value)).append(customQuote);
+            }
+
+            first = false;
+        }
+        sb.append("\n");
+        w.append(sb.toString());
+    }
+	
+	private static String followCVSformat(String value) {
+
+        String result = value;
+        if (result.contains("\"")) {
+            result = result.replace("\"", "\"\"");
+        }
+        return result;
 
     }
 
