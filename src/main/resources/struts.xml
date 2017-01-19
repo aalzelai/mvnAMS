@@ -61,7 +61,7 @@
             <result name="success">pages/Profile.jsp</result>
             <result name="error">index</result>
         </action>
-		<action name="PassengerController"
+		<action name="graphics"
             class="struts.action.PassengerControllerAction">
             <result name="success">pages/AirlineGraphics.jsp</result>
             <result name="error">index.jsp</result>

@@ -18,6 +18,7 @@
         <li><a href="index"><span class="glyphicon glyphicon-home"></span> Home</a></li>
         <s:if test="%{#session.user.userType.description.equals('Airline') || #session.user.userType.description.equals('Airport_Controller')}">
 			<li><a href="map"><span class="glyphicon glyphicon-map-marker"></span> Map</a></li>
+			<li><a href="graphics"><span class="glyphicon glyphicon-signal"></span> Graphics</a></li>
 		</s:if>
       </ul>
       <ul class="nav navbar-nav navbar-right">

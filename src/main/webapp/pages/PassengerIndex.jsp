@@ -103,9 +103,6 @@
 	<s:if test="#session.user.userType.description.equals('Airport_Controller')">
 		<p>Airport_controller</p>
 	</s:if>
-	<form action="PassengerController.action" method="get" >
-		<button type="submit">Passenger Controller</button>
-	</form>
 	
 </div>	
 
