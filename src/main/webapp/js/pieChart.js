@@ -12,7 +12,7 @@
         var legendRectSize = 18;
         var legendSpacing = 4;
 
-        var color = d3.scaleOrdinal(d3.schemeCategory20b);
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
 
         var svg = d3.select('#chart')
           .append('svg')
