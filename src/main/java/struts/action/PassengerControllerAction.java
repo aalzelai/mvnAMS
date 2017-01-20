@@ -36,7 +36,7 @@ public class PassengerControllerAction extends ActionSupport{
 
 
 	private void generateRandomCsv() throws IOException {
-		String csvFile = new File(System.getProperty("user.dir")).getParentFile().getParent() + "\\src\\main\\webapp\\csv\\pieChart.csv";
+		String csvFile = new File(System.getProperty("user.dir")).getParentFile() + "\\webapps\\mvnAMS\\csv\\pieChart.csv";
         FileWriter writer = new FileWriter(csvFile);
         Random random = new Random();
 
