@@ -106,4 +106,3 @@
     	map.addLayer(vectorLayer);
 	}
 	
-	
